@@ -1,0 +1,212 @@
+<mat-card>
+  <mat-tab-group #allTabs>
+    <form [formGroup]="suppliersForm">
+      <mat-tab label="General">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-8">
+              <!-- <mat-form-field appearance="outline" *ngIf="!roleField">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="roleId">
+                  <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role}}</mat-option>
+                </mat-select>
+              </mat-form-field> -->
+              <mat-form-field appearance="outline" *ngIf="roleField">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="roleId" disabled>
+                  <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Agency Name</mat-label>
+                <input matInput placeholder="Agency Name" formControlName="fullName"
+                 (keypress)="keyPressAlphaNumeric($event)" required>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Short Name</mat-label>
+                <input matInput placeholder="Short Name" formControlName="shortName"
+                  (keypress)="keyPressAlphaNumeric($event)" required>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Phone</mat-label>
+                <input matInput placeholder="Phone" formControlName="phone" 
+                (keypress)="keyPressNumeric($event)">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput formControlName="mobile" placeholder="Mobile Number" maxlength="10"  (keypress)="keyPressNumeric($event)">
+                <mat-error
+                  *ngIf="!suppliersForm.get('mobile').hasError('required') &&suppliersForm.get('mobile').hasError('pattern')">
+                  Please enter valid Mobilenumber
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>EmailId</mat-label>
+                <input matInput formControlName="email" placeholder="EmailId" type="email">
+
+                <mat-error
+                  *ngIf="!suppliersForm.get('email').hasError('required') &&suppliersForm.get('email').hasError('pattern')">
+                  Please enter valid EmailId
+                </mat-error>
+              </mat-form-field>
+            
+              <mat-form-field appearance="outline">
+                <mat-label>Cont.Person</mat-label>
+                <input matInput placeholder="Cont.Person" formControlName="contactPerson"
+                (keypress)="keyPressAlphaNumeric($event)">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>State</mat-label>
+                <mat-select formControlName="state">
+                  <mat-option value="Telangana">Telangana</mat-option>
+                  <mat-option value="AP">AP</mat-option>
+                </mat-select>
+              </mat-form-field>
+              
+              <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <input matInput placeholder="City" formControlName="city" 
+                (keypress)="keyPressAlphaNumeric($event)">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Pin</mat-label>
+                <input matInput placeholder="Pin"  formControlName="pin">
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="reason">
+                <mat-label>Address </mat-label>
+                <textarea matInput placeholder="Address" formControlName="address"
+                  (keypress)="keyPressAlpha($event)"></textarea>
+              </mat-form-field><br>
+              <form [formGroup]="reasonForm">
+                <mat-label>Block Listed&nbsp;</mat-label>
+                <mat-checkbox formControlName="blocked" [(ngModel)]="disabled"></mat-checkbox>&nbsp;
+              </form><br>
+              <mat-form-field appearance="outline" class="reason" *ngIf="disabled">
+                <mat-label>Reason</mat-label>
+                <input matInput placeholder="Reason" [disabled]="disabled" formControlName="reason">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4"><br>
+              <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="button image-upload-button" *ngIf="!roleField"
+                        mat-raised-button (click)="filePicker.click()">
+                        <mat-icon>image</mat-icon> Select Image
+                    </button>
+                    <button type="button" class="button image-upload-button" *ngIf="roleField" mat-raised-button
+                        (click)="filePicker.click()">
+                        <mat-icon>image</mat-icon> Select New Image
+                    </button>
+                    <input type="file" #filePicker (change)="onFileSelected($event)">
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-6" *ngIf="showImage">
+                  <div class="image-show" *ngIf="imagePath">
+                    <img [src]="Url+ '/'+ imagePath" class="image-show">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div *ngIf="imagePreview !== '' && imagePreview">
+                    <img [src]="imagePreview" class="image-preview">
+                  </div>
+                </div>
+            </div>
+              <!-- <button type="button" class="button image-upload-button" mat-raised-button (click)="filePicker.click()">
+                <mat-icon>image</mat-icon> Select Image
+              </button>
+              <button type="button" class="button image-upload-button" mat-raised-button (click)="filePicker.click()">
+                <mat-icon>image</mat-icon> Select Image
+              </button>
+              <input type="file" #filePicker (change)="onFileSelected($event)"> -->
+              <!-- <div class="image-show" *ngIf="imagePath">
+                <img [src]="Url+ '/'+ imagePath" class="image-show">
+              </div>
+              <br>
+              <div *ngIf="imagePreview !== '' && imagePreview">
+                <img [src]="imagePreview" class="image-preview">
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <button mat-raised-button color="primary" class="newButton" tabindex="-1" type="button" (click)='moveToSelectedTab("Lisence")'>Next</button>
+
+      </mat-tab>
+      <mat-tab label="Lisence">
+        <mat-form-field appearance="outline" class="gst">
+          <mat-label>GSTIn</mat-label>
+          <input matInput formControlName="gstIn">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="gst">
+          <mat-label>Reg.Type</mat-label>
+          <mat-select formControlName="regType">
+            <mat-option value="Option 1">Option 1</mat-option>
+            <mat-option value="Option 2">Option 2</mat-option>
+            <mat-option value="Option 3">Option 3</mat-option>
+          </mat-select>
+        </mat-form-field>
+       
+        <mat-form-field appearance="outline" class="gst">
+          <mat-label>PAN No</mat-label>
+          <input matInput placeholder="PAN Number" formControlName="panNum" class="PAN" (input)="panCardValidation($event)">
+        <span id="lblPANCard" class="error">Invalid PAN Number</span>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="gst">
+          <mat-label>TAN No</mat-label>
+          <input matInput placeholder="TAN Number" formControlName="tanNum" class="TAN" (input)="tanCardValidation($event)">
+          <span id="lblTANCard" class="error1">Invalid TAN Number</span>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="gst">
+          <mat-label>D.L No1</mat-label>
+          <input matInput placeholder="D.L No1" formControlName="dlNum1" (keypress)="keyPressNumeric($event)">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="gst">
+          <mat-label>Valid Upto</mat-label>
+          <input matInput formControlName="validUpto1" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="gst">
+          <mat-label>D.L No2</mat-label>
+          <input matInput placeholder="D.L No2" formControlName="dlNum2" (keypress)="keyPressNumeric($event)">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="gst">
+          <mat-label>Valid Upto</mat-label>
+          <input matInput formControlName="validUpto2" [matDatepicker]="picker1">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="gst">
+          <mat-label>D.L No3</mat-label>
+          <input matInput placeholder="D.L No3" formControlName="dlNum3" (keypress)="keyPressNumeric($event)">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="gst">
+          <mat-label>Valid Upto</mat-label>
+          <input matInput formControlName="validUpto3" [matDatepicker]="picker2">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="gst">
+          <mat-label>D.L No4</mat-label>
+          <input matInput placeholder="D.L No4" formControlName="dlNum4" (keypress)="keyPressNumeric($event)">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="gst">
+          <mat-label>Valid Upto</mat-label>
+          <input matInput formControlName="validUpto4" [matDatepicker]="picker3">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+        <!--  <br>
+         <mat-form-field class="note" appearance="outline">
+          <mat-label>description</mat-label>
+          <input matInput placeholder="description" formControlName="description">
+        </mat-form-field> -->
+        <br>
+        <button class="newButton" mat-raised-button tabindex="-1" type="button" color="warn"
+          (click)='moveToSelectedTab("General")'>Previous</button>&nbsp;&nbsp;
+        <button class="newButton" mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+      </mat-tab>
+    </form>
+  </mat-tab-group>
+
+</mat-card>

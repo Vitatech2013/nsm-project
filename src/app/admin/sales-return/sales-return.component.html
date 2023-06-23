@@ -1,0 +1,383 @@
+<div class="div">
+    <div class="mat-table matTable">
+    <mat-card class="mat-elevation-z0">
+        <form action="" [formGroup]="posBillForm">
+            <mat-form-field appearance="outline" class="name">
+                <mat-label>InvoiceNum</mat-label>
+                <input autofocus matInput placeholder="InvoiceNum" required formControlName="invoiceNum" (keyup)="invoiceFilter($event)"
+                    [matAutocomplete]="auto1">
+                <mat-autocomplete #auto1="matAutocomplete">
+                    <mat-option *ngFor="let cmp of salesinvoiceNum" [value]="cmp.invoiceNum" (click)="invoiceId(cmp.invoiceNum)">
+                        {{cmp.invoiceNum}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="name">
+                <mat-label>Customer Name</mat-label>
+                <input matInput formControlName="name" placeholder="CustomerName" type="text"  [value]="this.name">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="name">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput formControlName="mobile" placeholder="Mobile Number"  [value]="this.mobileNum">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="name">
+                <mat-label>Doctor</mat-label>
+                <input matInput placeholder="Doctor" formControlName="doctorId" (keyup)="DoctorFilter($event)"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let cmp of doctor" [value]="cmp.user.fullName" (click)="DoctorId(cmp.id)">
+                        {{cmp.user.fullName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field><br>
+            <div *ngIf="div" class="batch">
+                <table mat-table matSort  [dataSource]="batchData3" class="mat-elevation-z2">
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> S.No </th>
+                        <td mat-cell *matCellDef="let element"> {{batchData3.filteredData.indexOf(element)+1}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="batchNumber">
+                        <th mat-header-cell *matHeaderCellDef> Batch Number </th>
+                        <td mat-cell *matCellDef="let element"> {{element.batchNumber}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="productId">
+                        <th mat-header-cell *matHeaderCellDef> Product </th>
+                        <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+                    </ng-container>
+                     <ng-container matColumnDef="company">
+                        <th mat-header-cell *matHeaderCellDef> Company </th>
+                        <td mat-cell *matCellDef="let element"> {{element.product.company.company}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="expiryDate">
+                        <th mat-header-cell *matHeaderCellDef> Expiry </th>
+                        <td mat-cell *matCellDef="let element"> {{element.expiryDate |date:'MM-YYYY'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="unitMrp">
+                        <th mat-header-cell *matHeaderCellDef> Mrp </th>
+                        <td mat-cell *matCellDef="let element"> {{element.unitMrp}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="availableUnits">
+                        <th mat-header-cell *matHeaderCellDef> availableUnits </th>
+                        <td mat-cell *matCellDef="let element"> {{element.availableUnits}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="freeQuantity">
+                        <th mat-header-cell *matHeaderCellDef> FreeQuantity </th>
+                        <td mat-cell *matCellDef="let element"> {{element.freeQuantity}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="quantity">
+                        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="discount">
+                        <th mat-header-cell *matHeaderCellDef> Discount </th>
+                      
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="mbamount">
+                        <th mat-header-cell *matHeaderCellDef> Amount </th>
+                       
+                    </ng-container> -->
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns2; let i= index" (click)="onClick(row, i)" 
+                    [ngClass]="{'highlight': selectedRowIndex == i+1}"></tr>
+                </table>
+
+            </div>
+            <!-- <mat-form-field appearance="outline" class="name">
+                <mat-label>Doctor</mat-label>
+                <input matInput formControlName="doctorId" placeholder="Doctor" type="number">
+            </mat-form-field> -->
+
+            <div class="card-margin">
+                <table mat-table matSort [dataSource]="BatchData"  class="mat-elevation-z2">
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> S.No </th>
+                        <td mat-cell *matCellDef="let element"> {{BatchData.filteredData.indexOf(element)+1}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="batchNumber">
+                        <th mat-header-cell *matHeaderCellDef> Batch Number </th>
+                        <td mat-cell *matCellDef="let element"> {{element.batchNumber}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="productId">
+                        <th mat-header-cell *matHeaderCellDef> Product </th>
+                        <td mat-cell *matCellDef="let element"> {{element.productId}} </td>
+                    </ng-container>
+                     <ng-container matColumnDef="company">
+                        <th mat-header-cell *matHeaderCellDef> Company </th>
+                        <td mat-cell *matCellDef="let element"> {{element.company}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="expiryDate">
+                        <th mat-header-cell *matHeaderCellDef> Expiry </th>
+                        <td mat-cell *matCellDef="let element"> {{element.expiryDate |date:'MM-YYYY'}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="unitMrp">
+                        <th mat-header-cell *matHeaderCellDef> Mrp </th>
+                        <td mat-cell *matCellDef="let element"> {{element.unitMrp}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="code">
+                        <th mat-header-cell *matHeaderCellDef> HsnCode </th>
+                        <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="gst">
+                        <th mat-header-cell *matHeaderCellDef> Gst </th>
+                        <td mat-cell *matCellDef="let element"> {{element.gst}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Quantity">
+                        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                        <!-- <td mat-cell *matCellDef="let element"> {{element.mbBatch}} </td> -->
+                        <td mat-cell *matCellDef="let element;let j = index;" style="width: 1px;">
+                            <input class="allInput" [formControl]="Quantity[j]"  (keyup)="calculations(element.id,j)"
+                                (input)="addItem($event,'Quantity',BatchData.filteredData.indexOf(element))">
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="discount">
+                        <th mat-header-cell *matHeaderCellDef> Discount </th>
+                        <td mat-cell *matCellDef="let element;let j = index;">
+                            <select class="select" (click)="calculations(element.id,j)" [formControl]="DiscountType[j]"
+                                (input)="addItem($event,'disType',BatchData.filteredData.indexOf(element))">
+                               
+                                <option value="percentage" selected="selected">%</option>
+                                <option value="flat">Flat</option>
+                            </select>
+                            <input class="dateInput" placeholder="0.00" (keyup)="calculations(element.id,j)"
+                                [formControl]="DiscountAmount[j]"
+                                (input)="addItem($event,'Discount',BatchData.filteredData.indexOf(element))" />
+                        </td>
+                        <td>Amount: {{this.purAmount}}</td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="mbamount">
+                        <th mat-header-cell *matHeaderCellDef> Amount </th>
+                        <td mat-cell *matCellDef="let element;let j = index;" style="width: 1px;">
+                            <input class="allInput" [formControl]="this.mbamount[j]" readonly
+                                (input)="addItem($event,'this.mbamount',BatchData.filteredData.indexOf(element))">
+                        </td>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                        <td mat-cell *matCellDef="let element; let j = index;" class="action-link">
+                            <div class="action" (click)="deleteRow(element.id,j)">
+                                <mat-icon class="view" color="warn" matTooltip="Delete" (click)="calculations(element.id,j)">
+                                    delete</mat-icon>
+                            </div>
+                        </td>
+                    </ng-container> -->
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+                </table>
+<!-- 
+                <table mat-table matSort [dataSource]="BatchData"  class="mat-elevation-z2">
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef  > fggfg </th>
+                        <td mat-cell *matCellDef="let element"   > </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+                    <ng-container matColumnDef="productId">
+                        <th mat-header-cell *matHeaderCellDef  >  ghhgh</th>
+                        <td mat-cell *matCellDef="let element"  > </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+                         <ng-container matColumnDef="batchNumber">
+                        <th mat-header-cell *matHeaderCellDef  >  </th>
+                        <td mat-cell *matCellDef="let element"  >  </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+                     <ng-container matColumnDef="company">
+                        <th mat-header-cell *matHeaderCellDef >  </th>
+                        <td mat-cell *matCellDef="let element"  >  </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+                    <ng-container matColumnDef="expiryDate">
+                        <th mat-header-cell *matHeaderCellDef  >  </th>
+                        <td mat-cell *matCellDef="let element"   >  </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="unitMrp">
+                        <th mat-header-cell *matHeaderCellDef  >  </th>
+                        <td mat-cell *matCellDef="let element"  >  </td>
+                        <td mat-footer-cell *matFooterCellDef>Amount: {{this.purAmount}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="Quantity">
+                        <th mat-header-cell *matHeaderCellDef >  </th>
+                        <td mat-cell *matCellDef="let element"> {{element.mbBatch}} </td> -->
+                        <!-- <td mat-cell *matCellDef="let element;let b = index;"  >
+                            <input class="allInput" [formControl]="Quantity[b]" (keyup)="medicibeId(element.id,b)"
+                                (input)="addItem($event,'Quantity',BatchData.filteredData.indexOf(element))">
+                        </td>
+                        <td mat-footer-cell *matFooterCellDef> </td> 
+                    </ng-container>
+                    <ng-container matColumnDef="discount">
+                        <th mat-header-cell *matHeaderCellDef > Discount Price: {{this.discountPrice}} </th>
+                        <td mat-cell *matCellDef="let element;let j = index;" >
+                            <select class="select" (click)="calculations(j)" [formControl]="DiscountType[j]"
+                                (input)="addItem($event,'disType',BatchData.filteredData.indexOf(element))">
+                                <option selected="selected" disabled="disabled">select</option>
+                                <option value="percentage">%</option>
+                                <option value="flat">Flat</option>
+                            </select>
+                            <input class="dateInput" placeholder="0.00" (keyup)="calculations(j)"
+                                [formControl]="DiscountAmount[j]"
+                                (input)="addItem($event,'discount',BatchData.filteredData.indexOf(element))" />
+                        </td>
+                        <td mat-footer-cell *matFooterCellDef> Discount Price: {{this.discountPrice}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="code">
+                        <th mat-header-cell *matHeaderCellDef  >  </th>
+                        <td mat-cell *matCellDef="let element"   >  </td>
+                        <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>
+                    <ng-container matColumnDef="gst">
+                        <th mat-header-cell *matHeaderCellDef  >  </th>
+                        <td mat-cell *matCellDef="let element"  >  </td>
+                        <td mat-footer-cell *matFooterCellDef></td>
+                       
+                    </ng-container>
+                    <ng-container matColumnDef="mbamount">
+                        <th mat-header-cell *matHeaderCellDef  >  </th>
+                        <td mat-cell *matCellDef="let element;let j = index;"  >
+                            <input class="allInput" [formControl]="this.mbamount[j]" readonly
+                                (input)="addItem($event,'this.mbamount',BatchData.filteredData.indexOf(element))">
+                        </td>
+                        <td mat-footer-cell *matFooterCellDef>total:{{this.total}}</td>
+                    </ng-container> 
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+                    <tr mat-footer-row *matFooterRowDef="displayedColumns1"></tr>
+                </table> --> 
+                <button mat-button color="primary" type="button" (click)="openDialog()">Add Item</button>
+            </div>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2">  <mat-form-field appearance="outline" class="value">
+                    <mat-label>5% Value</mat-label>
+                    <input matInput formControlName="value5" [value]="this.gstValue5" placeholder="Value2" readonly
+                        type="number">
+                </mat-form-field></div>
+                <div class="col-sm-2">  <mat-form-field appearance="outline" class="value">
+                    <mat-label>5% Gst</mat-label>
+                    <input matInput formControlName="gst5" [value]="this.gstPrice5" placeholder="Value2" readonly
+                        type="number">
+                </mat-form-field></div>
+                <div class="col-sm-2"><mat-form-field appearance="outline" class="value">
+                    <mat-label>Amount</mat-label>
+                    <input matInput formControlName="amount" [(ngModel)]="this.purAmount" type="number" readonly>
+                </mat-form-field></div>
+                <div class="col-sm-2"> <mat-form-field appearance="outline" class="value">
+                    <mat-label>disType</mat-label>
+                    <mat-select formControlName="disType" (click)="purCalculations()">
+                        <!-- <mat-option selected="selected" disabled="selected">select</mat-option> -->
+                        <mat-option  value="percentage">%</mat-option>
+                        <mat-option value="flat">flat</mat-option>
+                    </mat-select>
+                </mat-form-field></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
+                    <div class="col-sm-2"><mat-form-field appearance="outline" class="value">
+                        <mat-label>12% Value</mat-label>
+                        <input matInput formControlName="value12" [value]=" this.gstValue12" readonly>
+                    </mat-form-field></div>
+                    <div class="col-sm-2"> <mat-form-field appearance="outline" class="value">
+                        <mat-label>12% Gst</mat-label>
+                        <input matInput formControlName="gst12" [value]="this.gstPrice12" readonly>
+                    </mat-form-field></div>
+                    <div class="col-sm-2">   <mat-form-field appearance="outline" class="value">
+                        <mat-label>DiscountAmount</mat-label>
+                        <input matInput formControlName="itemDisAmount" [(ngModel)]="this.discountPrice" readonly>
+                    </mat-form-field></div>
+                    <div class="col-sm-2"> <mat-form-field appearance="outline"  class="value">
+                        <mat-label>Discount%</mat-label>
+                        <input matInput formControlName="discount" (keyup)="purCalculations()">
+                    </mat-form-field></div>
+                  </div>
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
+                        <div class="col-sm-2">   <mat-form-field appearance="outline" class="value">
+                            <mat-label>18% Value</mat-label>
+                            <input matInput formControlName="value18" [value]="this.gstValue18" readonly>
+                        </mat-form-field></div>
+                        <div class="col-sm-2">   <mat-form-field appearance="outline" class="value" readonly>
+                            <mat-label>18% Gst</mat-label>
+                            <input matInput formControlName="gst18" [value]="this.gstPrice18">
+                        </mat-form-field></div>
+                        <div class="col-sm-2">  <mat-form-field appearance="outline" class="value" readonly>
+                            <mat-label>subTotal</mat-label>
+                            <input matInput formControlName="subTotal" [(ngModel)]="this.amount" readonly required>
+                        </mat-form-field></div>
+                        <div class="col-sm-2">  <mat-form-field appearance="outline"  class="value">
+                            <mat-label>Margin</mat-label>
+                            <input matInput formControlName="margin"  [(ngModel)]="this.marginvalue" type="number" readonly>
+                        </mat-form-field></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
+                            <div class="col-sm-2">  <mat-form-field appearance="outline" class="value" readonly>
+                                <mat-label>28% Value</mat-label>
+                                <input matInput formControlName="value28" [value]=" this.gstValue28">
+                            </mat-form-field></div>
+                            <div class="col-sm-2">  <mat-form-field appearance="outline" class="value" readonly>
+                                <mat-label>28% Gst</mat-label>
+                                <input matInput formControlName="gst28" [value]="this.gstPrice28">
+                            </mat-form-field></div>
+                            <div class="col-sm-2"> <mat-form-field appearance="outline"  class="value" readonly>
+                                <mat-label>TotalAmount</mat-label>
+                                <input matInput formControlName="totalAmount" [(ngModel)]="this.total" required>
+                            </mat-form-field></div>
+                            <div class="col-sm-2"> <mat-form-field appearance="outline" class="value"  >
+                                <mat-label>PaymentType</mat-label>
+                                <mat-select formControlName="paymentTypeId" required>
+                                    <mat-option *ngFor="let paymentTypes of paymentType" [value]="paymentTypes.id" required>
+                                        {{paymentTypes.paymentType}}</mat-option>
+                                </mat-select>
+                            </mat-form-field></div>
+                           </div>
+                            <div class="row">
+                                <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">  <mat-form-field appearance="outline" class="value" >
+                                    <mat-label>0% Value</mat-label>
+                                    <input matInput formControlName="value0" [value]=" this.gstValue0" readonly>
+                                </mat-form-field></div>
+                                <div class="col-sm-2">   <mat-form-field appearance="outline" class="value">
+                                    <mat-label>Total Gst</mat-label>
+                                    <input matInput formControlName="taxAmount" [(ngModel)]="this.totalGstPrice" readonly required>
+                                </mat-form-field></div>
+                                <div class="col-sm-2">  <mat-form-field appearance="outline"  class="value">
+                                    <mat-label>NetAmount</mat-label>
+                                    <input matInput formControlName="netAmount" [(ngModel)]=" this.netAmt" readonly required>
+                                </mat-form-field></div>
+                                <div class="col-sm-2">
+                                    <mat-form-field appearance="outline" class="value">
+                                    <mat-label>description</mat-label>
+                                    <input matInput formControlName="description" placeholder="description" type="text">
+                                </mat-form-field></div>
+                           </div>
+                           <br>
+            <div class="row">
+                <div class="col-sm-10"></div>
+                <div class="col-sm-2">
+                    <button mat-raised-button type="button" class="save"  color="primary" (click)="insertsales()">
+                        Save
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9"> </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="col-sm-2">
+                    <mat-form-field appearance="outline" style="max-width: 190px;" class="value" class="invisible">
+                        <mat-label>afterDiscountAmt</mat-label>
+                        <input matInput formControlName="afterDisAmount" [(ngModel)]="this.amount" type="number">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </form>
+    </mat-card>
+</div>

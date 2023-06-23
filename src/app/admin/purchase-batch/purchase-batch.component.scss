@@ -1,0 +1,80 @@
+
+table {
+    width: 100%;
+  }
+ table td{
+    text-align: center;
+  }
+  table th{
+    text-align: center;
+  }
+  
+  mat-toolbar{
+    margin: 1% 1% 1% 1%;
+    width: 96%;
+  }
+  
+  .card-margin{
+    margin: 1%;
+  }
+  
+  
+  p{
+    text-align: center;
+  }
+ 
+  .spacer{
+    flex: 1 1 auto;
+  }
+  .newButton{
+    /* margin-left: -2%; */
+    height: 35px;
+  }
+  .view{  
+  cursor: pointer;
+  margin: 2px;
+  border: 1px solid rgb(231, 230, 230);
+  padding: 5px;
+  border-radius: 5px;
+  }
+  
+  .add{
+  margin-left: -5px;
+  font-size: 20px;
+  }
+ 
+  .exportButton{
+    height: 35px;
+  }
+  .matTable{
+  border: 1px solid #E5E7E9;
+  }
+  /* .image{
+    height: 80px;
+    width: 80px;
+  } */
+  .image{
+    text-align: center;
+    background-color: white;
+    div{
+      text-align: center;
+      font-size: 30px;
+      color: #CACFD2;
+      font-weight: 400;
+
+      
+  }
+}
+// ::ng-deep.mat-form-field-ripple {
+//   /*change color of underline when focused*/
+//   background-color:white!important;
+
+// }
+
+// ::ng-deep .mat-input-underline {
+//   display: none;
+// }
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}

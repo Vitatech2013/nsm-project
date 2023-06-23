@@ -1,0 +1,110 @@
+<div class="card-margin mat-elevation-z3">
+    <div class="mat-table matTable">
+        <mat-card class="mat-elevation-z0">
+           
+            <form [formGroup]="productForm">
+                <div class="row">
+                    <div class="col col-sm-4">
+                        <mat-form-field appearance="outline" class="product">
+                            <mat-label>Product</mat-label>
+                            <input matInput placeholder="Product" formControlName="productId" (keyup)="ProductFilter($event)" [matAutocomplete]="auto1">
+                            <mat-autocomplete #auto1="matAutocomplete">
+                                <mat-option *ngFor="let pro of product" [value]="pro.name" 
+                                (click)="productId(pro.id)">{{pro.name}}</mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col col-sm-5">
+                        <button mat-raised-button color="primary" class="save" (click)="addProduct()"
+                        routerLinkActive="router-link-active">
+                        <mat-icon class="add">add_circle</mat-icon>Add
+                       </button>  <span class="spacer"></span>
+                    </div>
+                  
+                    <div class="col col-sm-3">
+                        <mat-form-field appearance="outline">
+                            <!-- <mat-label>Search</mat-label> -->
+                            <input matInput placeholder="Search" class="search" (keyup)="applyFilter($event)">
+                            <button matSuffix mat-icon-button>
+                                <mat-icon>search</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </mat-card>
+
+        <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> SNo. </th>
+                <td mat-cell *matCellDef="let element">{{dataSource.filteredData.indexOf(element)+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Product Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.product.name}} </td> -->
+                    <!-- <br> <span style="color: rgb(129, 128, 128);">{{element.mGeneric}}</span>  -->
+               
+            <!-- </ng-container>
+            <ng-container matColumnDef="shortName">
+                <th mat-header-cell *matHeaderCellDef> ShortName </th>
+                <td mat-cell *matCellDef="let element"> {{element.product.shortName}} </td>
+            </ng-container>
+           
+            <ng-container matColumnDef="unitPacking">
+                <th mat-header-cell *matHeaderCellDef>Packing </th>
+                <td mat-cell *matCellDef="let element"> {{element.product.packing}} * {{element.product.units}}  </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.product.createdAt| date}} </td>
+            </ng-container> -->
+            <!-- <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-slide-toggle matTooltipPosition="left" (click)="changeStatus(element.id, element.status)"
+                        [checked]="element.status ===  true " class="primary">
+                    </mat-slide-toggle>
+                </td>
+            </ng-container> -->
+            <!-- <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element" class="action-link">
+                    <!-- <mat-icon class="view" color="primary" matTooltip="View" (click)="UpdateMedicine(element.id)">
+                        mode</mat-icon> -->
+                   <!-- &nbsp;&nbsp; <mat-icon class="view" color="warn" matTooltip="Delete" (click)="DeleteMedicine(element.id)">
+                        delete</mat-icon>
+                </td> 
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div *ngIf="isLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="image" *ngIf="total <= 0">
+            <img src="{{noData.image}}" style="height:150px;width: 150px;">
+            <div>
+                {{noData.noDataFound}}
+            </div>
+        </div>
+        <mat-paginator #paginator [length]="total" [showFirstLastButtons]="true" [pageSize]="pageSize"
+            [pageSizeOptions]="totalLength">
+        </mat-paginator> -->
+        <ag-grid-angular
+        pagination="true"
+        paginationPageSize="5"
+        style="width:100%; height:400px" 
+        class="ag-theme-alpine"
+        [defaultColDef]="defaultColDef"
+        [rowData]="productData.filteredData" 
+        [columnDefs]="columnDefs"
+        (gridReady)="onGridReady($event)"
+        [editType]="'fullRow'"
+        (rowEditingStopped)="(onRowEditingStopped)"
+        [frameworkComponents]="frameworkComponents"></ag-grid-angular>
+    </div>
+</div>
+
+
+

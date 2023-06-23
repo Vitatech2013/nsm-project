@@ -1,0 +1,81 @@
+<div class="card-margin mat-elevation-z3">
+    <div class="mat-table matTable">
+        <mat-card class="mat-elevation-z0">
+            <mat-card-header>
+                <button mat-raised-button class="newButton" color="primary" (click)="openDialog()"
+                    routerLinkActive="router-link-active">
+                    <mat-icon class="add">add_circle</mat-icon> Add<span class="spacer"></span>
+                </button><span class="spacer"></span>
+                <mat-form-field>
+                    <mat-label>Search</mat-label>
+                    <input matInput placeholder="Search" (keyup)="applyFilter($event)">
+                    <button matSuffix mat-icon-button>
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
+            </mat-card-header>
+        </mat-card>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> SNo. </th>
+                <td mat-cell *matCellDef="let element">{{dataSource.filteredData.indexOf(element)+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="UserId">
+                <th mat-header-cell *matHeaderCellDef> User </th>
+                <td mat-cell *matCellDef="let element"> {{element.user.fullName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="credit">
+                <th mat-header-cell *matHeaderCellDef> Credit </th>
+                <td mat-cell *matCellDef="let element"> {{element.credit}} </td>
+            </ng-container>
+            <ng-container matColumnDef="debit">
+                <th mat-header-cell *matHeaderCellDef> Debit </th>
+                <td mat-cell *matCellDef="let element"> {{element.debit}} </td>
+            </ng-container>
+            <ng-container matColumnDef="balance">
+                <th mat-header-cell *matHeaderCellDef> User </th>
+                <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
+            </ng-container>
+            <ng-container matColumnDef="paymentTypeId">
+                <th mat-header-cell *matHeaderCellDef> PaymentType, </th>
+                <td mat-cell *matCellDef="let element"> {{element.paymentType.paymentType}} </td>
+            </ng-container>
+
+
+            <!-- <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element">
+
+                    <mat-slide-toggle matTooltipPosition="left" (click)="changeStatus(element.balanceId, element.status)"
+                        [checked]="element.status === true" class="primary">
+                    </mat-slide-toggle>
+
+                </td>
+            </ng-container> -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element" class="action-link">
+                    <mat-icon class="view" color="primary" matTooltip="View" (click)="updateCategory(element.id)">
+                        mode</mat-icon>
+                    <mat-icon class="view" color="warn" matTooltip="Delete" (click)="DeleteCategory(element.id)">
+                        delete</mat-icon>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div *ngIf="isLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="image" *ngIf="total <= 0">
+            <img src="{{noData.image}}" style="height:150px;width: 150px;">
+            <div>
+                {{noData.noDataFound}}
+            </div>
+        </div>
+        <mat-paginator #paginator [length]="total" [showFirstLastButtons]="true" [pageSize]="pageSize"
+            [pageSizeOptions]="totalLength">
+        </mat-paginator>
+    </div>
+</div>

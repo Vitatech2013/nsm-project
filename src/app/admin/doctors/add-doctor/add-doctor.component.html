@@ -1,0 +1,129 @@
+<div class="div">
+    <mat-card class="mat-elevation-z1">
+        <form action="" [formGroup]="doctorsForm">
+            <div class="row">
+                <!-- <div class="col-sm-4"> -->
+                    <!-- <mat-form-field appearance="outline" *ngIf="!roleField">
+                        <mat-label>Role</mat-label>
+                        <mat-select formControlName="roleId">
+                            <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role}}</mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+                    <mat-form-field appearance="outline" *ngIf="roleField">
+                        <mat-label>Role</mat-label>
+                        <mat-select formControlName="roleId" disabled>
+                            <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                <!-- </div> -->
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>FullName</mat-label>
+                        <input matInput placeholder="FullName" formControlName="fullName" 
+                        (keypress)="keyPressAlphaNumeric($event)">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>EmailId</mat-label>
+                        <input matInput formControlName="email" placeholder="EmailId" type="email">
+                        <mat-error
+                            *ngIf="!doctorsForm.get('email').hasError('required') &&doctorsForm.get('email').hasError('pattern')">
+                            Please enter valid EmailId
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Mobile Number</mat-label>
+                        <input matInput formControlName="mobile" placeholder="Mobile Number" maxlength="10" (keypress)="keyPressNumeric($event)">
+                        <mat-error
+                            *ngIf="!doctorsForm.get('mobile').hasError('required') &&doctorsForm.get('mobile').hasError('pattern')">
+                            Please enter valid Mobilenumber
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+               
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Phone</mat-label>
+                        <input matInput placeholder="Phone" formControlName="phone" 
+                        (keypress)="keyPressNumeric($event)">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Hospital</mat-label>
+                        <input matInput formControlName="hospital" placeholder="Hospital"
+                            (keypress)="keyPressAlphaNumeric($event)">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="gender">
+                            <mat-option value="male">Male</mat-option>
+                            <mat-option value="female">Female</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+               
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Qualification</mat-label>
+                        <input matInput formControlName="qualification" placeholder="Qualification" type="text">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Designation</mat-label>
+                        <input matInput formControlName="designation" placeholder="Designation" type="text">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Specialization</mat-label>
+                        <input matInput formControlName="specialist" placeholder="Specialization" type="text">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+               
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <button type="button" class="button image-upload-button" *ngIf="!roleField"
+                                mat-raised-button (click)="filePicker.click()">
+                                <mat-icon>image</mat-icon> Select Image
+                            </button>
+                            <button type="button" class="button image-upload-button" *ngIf="roleField" mat-raised-button
+                                (click)="filePicker.click()">
+                                <mat-icon>image</mat-icon> Select New Image
+                            </button>
+                            <input type="file" #filePicker (change)="onFileSelected($event)">
+                        </div>
+                        <div class="col-sm-3" *ngIf="showImage">
+                            <div class="image-show">
+                                <img [src]="Url+ '/'+ imagePath" class="image-show">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div *ngIf="imagePreview !== '' && imagePreview">
+                                <img [src]="imagePreview" class="image-preview">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+            <button mat-raised-button color="warn" type="reset" class="newButton" *ngIf="!id">Clear</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="newButton" mat-raised-button color="accent" [routerLink]="['/admin/doctors']"
+                routerLinkActive="router-link-active">Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="newButton" mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+        </form>
+    </mat-card>
+</div>

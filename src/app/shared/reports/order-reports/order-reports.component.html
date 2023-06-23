@@ -1,0 +1,146 @@
+<div class="card-margin mat-elevation-z3">
+    <div class="mat-table matTable">
+        <mat-card class="mat-elevation-z0">
+            <form [formGroup]="rangeForm">
+                <div class="row">
+                    <div class="col col-sm-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>From Date</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="start">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col col-sm-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>To Date</mat-label>
+                            <input matInput [matDatepicker]="picker1" formControlName="end">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col col-sm-6">
+                        <button class="dateSearch" mat-raised-button color="primary"
+                            (click)="getOrderReports()">Search</button>&nbsp;
+                        <button class="dateSearch" mat-raised-button color="primary" (click)="exportTable()">
+                            <mat-icon>description</mat-icon>Excel
+                        </button>
+                    </div>
+                    <div class="col col-sm-2">
+                        <mat-form-field>
+                            <input matInput class="dateSearch" placeholder="Search" autocomplete="off" type="search"
+                                (keyup)="applyFilter($event.target.value)">
+                            <button matSuffix mat-icon-button>
+                                <mat-icon>search</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </mat-card>
+        <table mat-table [dataSource]="dataSource" matSort *ngIf="total <= 0">
+            <ng-container matColumnDef="sno">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> S.No </th>
+                <td mat-cell *matCellDef="let data;let j = index"> {{j+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="tableNumber">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Table Number </th>
+                <td mat-cell *matCellDef="let data"> {{data.table.tableNumber}} </td>
+            </ng-container>
+            <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+                <td mat-cell *matCellDef="let data"> {{data.waiter.role.role}} </td>
+            </ng-container>
+            <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Waiter </th>
+                <td mat-cell *matCellDef="let data"> {{data.waiter.username}} </td>
+            </ng-container>
+            <ng-container matColumnDef="orderStatus">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Order Status </th>
+                <td mat-cell *matCellDef="let data"> {{data.orderStatus.orderStatus}} </td>
+            </ng-container>
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                <td mat-cell *matCellDef="let data"> {{data.amount}} </td>
+            </ng-container>
+            <ng-container matColumnDef="discount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Discount </th>
+                <td mat-cell *matCellDef="let data"> {{data.discount}} </td>
+            </ng-container>
+            <ng-container matColumnDef="totalAmount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Amount </th>
+                <td mat-cell *matCellDef="let data"> {{data.totalAmount}} </td>
+            </ng-container>
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                <td mat-cell *matCellDef="let data"> {{data.date | date}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <table mat-table [dataSource]="dataSource" matSort *ngIf="total > 0">
+            <ng-container matColumnDef="sno">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> S.No </th>
+                <td mat-cell *matCellDef="let data;let j = index"> {{j+1}} </td>
+                <td mat-footer-cell *matFooterCellDef> Total </td>
+            </ng-container>
+            <ng-container matColumnDef="tableNumber">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Table Number </th>
+                <td mat-cell *matCellDef="let data"> {{data.table.tableNumber}} </td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+            <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+                <td mat-cell *matCellDef="let data"> {{data.waiter.role.role}} </td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+            <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Waiter </th>
+                <td mat-cell *matCellDef="let data"> {{data.waiter.username}} </td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+            <ng-container matColumnDef="orderStatus">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Order Status </th>
+                <td mat-cell *matCellDef="let data"> {{data.orderStatus.orderStatus}} </td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                <td mat-cell *matCellDef="let data"> {{data.amount}} </td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+            <ng-container matColumnDef="discount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Discount </th>
+                <td mat-cell *matCellDef="let data"> {{data.discount}} </td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+            <ng-container matColumnDef="totalAmount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Amount </th>
+                <td mat-cell *matCellDef="let data"> {{data.totalAmount}} </td>
+                <td mat-footer-cell *matFooterCellDef> {{tAmount| currency:'INR'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                <td mat-cell *matCellDef="let data"> {{data.date | date}} </td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+        </table>
+
+        <div *ngIf="isLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="image" *ngIf="total <= 0">
+            <img src="{{noData.image}}" style="height: 150px;width: 150px;">
+            <div>
+                {{noData.noDataFound}}
+            </div>
+        </div>
+        <mat-paginator #paginator [length]="total" [showFirstLastButtons]="true" [pageSize]="pageSize"
+            [pageSizeOptions]="totalLength">
+        </mat-paginator>
+    </div>
+</div>

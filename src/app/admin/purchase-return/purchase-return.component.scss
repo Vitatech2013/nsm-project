@@ -1,0 +1,188 @@
+mat-card{
+  margin: 0.5%;
+}
+.formField{
+  // margin: 3px;
+  width: 100%;
+  font-size: 12px;
+  height: 50px;
+}
+.purchaseData{
+  border: 1px solid rgb(247, 244, 244);
+}
+.purchaseData span{
+  font-size: 15px;
+  margin: 10px;
+}
+
+.highlight{
+  background: #D6EAF8;
+}
+
+tr:focus{
+      outline: none;
+  }
+.input{
+    width: 70px;
+    height: 100%;
+    padding: 8px;
+    text-align: center;
+    border: none;
+  }
+  .packingInput{
+    width: 35px;
+    height: 100%;
+    padding: 8px;
+    text-align: center;
+    border: none;
+  }
+  .unitsInnput{
+    width: 40px;
+    height: 100%;
+    padding: 8px;
+    text-align: center;
+    border: none;
+  }
+  .nameInput{
+    width: 100px;
+    height: 100%;
+    padding: 8px;
+    text-align: center;
+    border: none;
+  }
+  .gstInput{
+    width: 40px;
+    height: 100%;
+    padding: 8px;
+    text-align: center;
+    border: none;
+  }
+  .qtyInput{
+    width: 40px;
+    height: 100%;
+    padding: 8px;
+    text-align: center;
+    border: none;
+  }
+  .dateInput{
+    width: 60px;
+    height: 33px;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+  }
+  .select{
+    text-align: center;
+    height: 36px;
+    border: 1px solid rgb(226, 220, 220);
+    border-radius: 5px;
+  }
+  .date{
+    margin-left: -10px;
+  }
+ 
+  mat-toolbar{
+    background-color: white;
+    border: 1px solid rgb(241, 240, 240);
+    height: 50px;
+}
+ 
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid rgb(241, 240, 240);
+  }
+  td{
+    border: 1px solid rgb(241, 240, 240);
+    text-align: center;
+    height: 100%;
+  }
+ table th{
+    border: 1px solid rgb(241, 240, 240);
+    text-align: center;
+  }
+  .mat-row,
+  .mat-header-row {
+   display: table-row;
+   height: 25px;
+  }
+  .batch{
+    overflow: scroll;
+    height: 120px;
+  }
+// .view{  
+    // text-align: center;
+    // cursor: pointer;
+    // margin: 2px;
+    // border: 1px solid rgb(231, 230, 230);
+    // padding: 10px;
+    // border-radius: 5px;
+  //  }
+   .action{
+    text-align: center;
+    cursor: pointer;
+    margin: 2px;
+    border: 1px solid rgb(231, 230, 230);
+    height: 28px;
+    // padding: 2px;
+    border-radius: 5px;
+   }
+
+   .calculations{
+    border: 1px solid rgb(243, 242, 242);
+  }
+   .totalTable{
+    border-collapse: collapse;
+    border: none;
+  }
+  .totalTable td{
+    border: none;
+  }
+  .totalTable input{
+    width: 85px;
+    margin-left: -10px;
+    border: 1px solid rgb(163, 162, 162);
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 3px;
+    text-align: center;
+  }
+  .totalTable label{
+    font-size: 12px;
+  }
+  .selectDisType{
+    width: 85px;
+    height: 25px;
+    margin-left: -10px;
+    border: 1px solid rgb(163, 162, 162);
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 3px;
+    text-align: center;
+  }
+ .save{
+  width: 100%;
+ }
+  button{
+    height: 35px;
+    border-radius: 3px;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 15px;
+}
+//  ::-webkit-scrollbar-track {
+//    box-shadow: inset 0 0 5px grey;
+//    border-radius: 10px;
+//  }
+::-webkit-scrollbar-thumb {
+  background: #64B5F6; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64B5F6; 
+}
+@import  "~bootstrap/dist/css/bootstrap.min.css";
+  
+

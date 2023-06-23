@@ -1,0 +1,90 @@
+<div class="card-margin">
+  <div class="mat-table matTable">
+    <mat-card class="mat-elevation-z0">
+      <mat-card-header>
+        <button mat-raised-button class="newButton" color="primary" (click)="openDialog()">
+          <mat-icon class="add">add_circle</mat-icon> Add
+        </button>
+        <span class="spacer"></span>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Search" autocomplete="off" type="search" (keyup)="applyFilter($event)">
+          <button matSuffix mat-icon-button>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </mat-card-header>
+    </mat-card>
+    <!-- <table mat-table [dataSource]="dataSource" matSort class="table-responsive">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>S.No</th>
+        <td mat-cell *matCellDef="let hsn"> {{dataSource.filteredData.indexOf(hsn)+1}} </td>
+      </ng-container>
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Code </th>
+        <td mat-cell *matCellDef="let hsn"> {{hsn.code}} </td>
+      </ng-container>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+        <td mat-cell *matCellDef="let hsn"> {{hsn.hsnType.type}} </td>
+      </ng-container>
+      <ng-container matColumnDef="gst">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> GST % </th>
+        <td mat-cell *matCellDef="let hsn"> {{hsn.gst}} </td>
+      </ng-container>
+      <ng-container matColumnDef="gst2">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>GST2 % </th>
+        <td mat-cell *matCellDef="let hsn"> {{hsn.gst2}} </td>
+      </ng-container> -->
+      <!-- <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> description </th>
+        <td mat-cell *matCellDef="let hsn"> {{hsn.description}} </td>
+      </ng-container> -->
+      <!-- <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-slide-toggle matTooltipPosition="left" (click)="changeStatus(element.id, element.status)"
+            [checked]="element.status ===  true " class="primary">
+          </mat-slide-toggle>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+        <td mat-cell *matCellDef="let hsn" class="action-link">
+          <mat-icon class="view" color="primary" matTooltip="View" (click)="updateHSNData(hsn.id)">
+            mode
+          </mat-icon>
+          <mat-icon class="view" color="warn" matTooltip="Delete" (click)="deleteHSNData(hsn.id)">
+            delete</mat-icon>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let paymentType; columns: displayedColumns;">
+      </tr>
+    </table>
+    <div *ngIf="isLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div class="image" *ngIf="total <= 0">
+      <img src="{{noData.image}}" style="height:150px;width: 150px;">
+      <div>
+        {{noData.noDataFound}}
+      </div>
+    </div>
+    <mat-paginator #paginator [showFirstLastButtons]="true" [pageSize]="pageSize" [pageSizeOptions]="totalLength">
+    </mat-paginator> -->
+
+    <ag-grid-angular
+    pagination="true"
+    paginationPageSize="5"
+    style="width:100%; height:400px" 
+    class="ag-theme-alpine"
+    [defaultColDef]="defaultColDef"
+    [rowData]="dataSource.filteredData" 
+    [columnDefs]="columnDefs"
+    (gridReady)="onGridReady($event)"
+    [editType]="'fullRow'"
+    (rowEditingStopped)="(onRowEditingStopped)"
+    [frameworkComponents]="frameworkComponents"></ag-grid-angular>
+  </div>
+</div>

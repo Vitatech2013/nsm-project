@@ -1,0 +1,124 @@
+
+
+table {
+    width: 100%;
+  }
+  
+  td{
+    width:5%;
+  }
+  th{
+    font-weight: bold;
+  }
+  tr.mat-footer-row {
+    font-weight: bold;
+  }
+  
+  img{
+    margin: 2px;
+    height: 50px;
+    width: 50px;
+  }
+  
+  .card-margin{
+    margin: 1%;
+  }
+  
+  .view{  
+  cursor: pointer;
+  margin: 2px;
+  border: 1px solid rgb(231, 230, 230);
+  border-radius: 5px;
+  }
+  .matTable{
+  border: 1px solid #E5E7E9;
+  }
+  .image{
+  text-align: center;
+  background-color: white;
+  div{
+      text-align: center;
+      font-size: 30px;
+      color: #CACFD2;
+      font-weight: 400;
+  }
+  }
+  mat-form-field{
+  width: 100%;
+  font-size: 12px;
+  }
+  .dateSearch{
+  margin-top: 5px;
+  height: 60%;
+  border-radius: 4px;
+  }
+  .sales{
+    overflow: scroll;
+    height: 420px;
+  }
+  .inner-table{
+    width: 100%;
+  }
+  .mat-footer-cell{
+    
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 15px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #64B5F6; 
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #64B5F6; 
+  }
+  table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+    margin: 1%;
+    width: 78%;
+  }
+  
+  .example-element-diagram {
+    width: 100%;
+    border: 2px solid #efefef;
+    font-weight: lighter;
+    height: 120px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+  @import "~bootstrap/dist/css/bootstrap.min.css";

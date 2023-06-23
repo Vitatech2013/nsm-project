@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+
+<body>
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><i class="lab la-accusoft"></i>&nbsp;&nbsp;<span>NS Medicals</span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a [routerLink]="['/admin']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <span class="las la-home"></span><span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/customers']" routerLinkActive="active">
+                        <span class="las la-users"></span><span>Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/invoices']" routerLinkActive="active">
+                        <span class="las la-receipt"></span><span>Invoices</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/pos-bill']" routerLinkActive="active">
+                        <span class="las la-cart-plus"></span><span>POS / Bill</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/purchaseSample/add']" routerLinkActive="active">
+                        <span class="las la-money-bill-wave"></span><span>Purchase</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/stock-adjustment']" routerLinkActive="active">
+                        <span class="las la-chart-bar"></span><span>Stock Adjustment</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/medicines']" routerLinkActive="active">
+                        <span class="las la-briefcase-medical"></span><span>Inventory / Medicines</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/expenses']" routerLinkActive="active">
+                        <span class="las la-money-check"></span><span>Expenses</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/attendance']" routerLinkActive="active">
+                        <span class="las la-clipboard-check"></span><span>Attendance</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/report']" routerLinkActive="active">
+                        <span class="las la-flag"></span><span>Report</span>
+                    </a>
+                </li>
+                <li>
+                    <a><span></span><span>-- ADMIN USER --</span></a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/employees']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <span class="las la-user-friends"></span><span>Employees</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/employees/employee-role']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <span class="las la-user-tag"></span><span>Role</span>
+                    </a>
+                </li>
+                <li>
+                    <a><span></span><span>-- MASTER SETTINGS --</span></a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/medicine-category']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <span class="las la-comment-medical"></span><span>Medicine Category</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/doctors']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <span class="las la-user-shield"></span><span>Doctors</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/company']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <span class="las la-building"></span><span>Company</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/HSN']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <span class="las la-barcode"></span><span>HSN</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/payment-type']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <span class="las la-credit-card"></span><span>Payment Type</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/expense-type']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <span class="las la-money-bill"></span><span>Expense Type</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/suppliers']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <span class="las la-industry"></span><span>Suppliers</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars"></span> Dashboard
+                </label>
+            </h2>
+            <div class="user-wrapper" [matMenuTriggerFor]="menu">
+                <img src="../../../assets/admin.jpg" width="40px" height="40px" alt="">
+                <div>
+                    <h4>Admin</h4>
+                    <small>Super Admin</small>
+                </div>
+            </div>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item [routerLink]="['/admin/profile']" routerLinkActive="router-link-active"><span
+                        class="las la-sign-out"></span>&nbsp;Profile </button>
+                <!-- <button mat-menu-item [routerLink]="['/admin/change-password']" routerLinkActive="router-link-active">Change Password &nbsp;<mat-icon>vpn_key</mat-icon></button> -->
+                <button mat-menu-item (click)="logout()"><span class="las la-sign-out"></span>&nbsp;Logout</button>
+            </mat-menu>
+        </header>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</body>
+
+</html>

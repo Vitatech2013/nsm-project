@@ -1,0 +1,64 @@
+<!-- <br><br><br><br>
+<mat-card class="mat-elevation-z0">
+    <mat-card-content>
+        <img src="../../assets/nsm.jpg">
+        <form [formGroup]="form">
+            <div class="email-input">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>UserName</mat-label>
+                    <input matInput formControlName="username">
+                    <mat-icon matSuffix>account_circle</mat-icon>
+                </mat-form-field>
+            </div>
+            <a [routerLink]="['/forgotpassword']" class="aLink" routerLinkActive="">Forgot Password?</a>
+            <div class="email-input">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <button type="submit" (click)="onSubmit()" mat-raised-button color="primary" class="login-button">
+                Sign In
+            </button><br><br>
+        </form>
+    </mat-card-content>
+</mat-card> -->
+
+<body class="container-fluid">
+    <div class="session">
+        <form action="" class="log-in" [formGroup]="form">
+            <h4>NS Medicals</h4>
+            <!-- <h4>Welcome Back</h4> -->
+            <p >Welcome back! Log in to your account to view today's Deals</p>
+            <div style="width:500px">
+
+                <p class="alert alert-danger" *ngIf="showAlert" >Invalid Credentials!!!!</p>
+    
+            </div>
+            <!-- <div class="floating-label">
+                <mat-icon matSuffix>eye</mat-icon>
+                <input placeholder="User Name" type="email" name="email" id="email" autocomplete="off" formControlName="username">
+                <label for="email">User Name</label>
+            </div> -->
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping">@<i class="bi bi-person-circle"></i></span>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" formControlName="username" aria-describedby="addon-wrapping">
+              </div> <br>
+              <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping">#<i class="bi bi-shield-lock-fill"></i></span>
+                  <input type="password" class="form-control" placeholder="Password" aria-label="password" formControlName="password" aria-describedby="addon-wrapping">
+                </div> <br>
+                <a [routerLink]="['/forgotpassword']" class="aLink" routerLinkActive="">Forgot Password?</a>
+            <!-- <div class="floating-label">
+                <mat-icon matSuffix>eye</mat-icon>
+                <input placeholder="Password" type="password" name="password" id="password" autocomplete="off" formControlName="password">
+                <label for="password">Password:</label>
+            </div> -->
+            <button type="submit" onClick="return false;" type="submit" (click)="onSubmit()">Log in</button>
+        </form>
+    </div>
+</body>

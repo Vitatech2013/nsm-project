@@ -1,0 +1,41 @@
+
+mat-form-field{
+    margin: 2px;
+    width: 210px;
+}
+mat-card{
+    margin: 20px;
+}
+
+
+textarea{
+    height: 15px;
+    width: 280px;
+}
+input[type="file"]{
+    visibility: hidden;
+}
+    
+.image-preview{
+    height: 140px;
+    width: 140px;
+    margin-left: 20%;
+    margin-top: -20px;
+    border-radius: 70px;
+}
+.image-show{
+    height: 140px;
+    width: 140px;
+    margin-left: 20%;
+    margin-top: -5px;
+    border-radius: 70px;
+}
+button{
+    border-radius: 5px;
+    width: 220px;
+    height: 40px;
+}
+.bgcolor{
+    background-color: #607D8B;
+}
+@import  "~bootstrap/dist/css/bootstrap.min.css";

@@ -1,0 +1,89 @@
+<mat-card>
+    <form [formGroup]="medicineForm">
+        <mat-form-field appearance="outline" >
+            <mat-label>Medicine Category</mat-label>
+            <input matInput placeholder="category" formControlName="categoryId" (keyup)="CategoryFilter($event)" [matAutocomplete]="auto1">
+            <mat-autocomplete #auto1="matAutocomplete">
+                <mat-option *ngFor="let cat of category" [value]="cat.category" 
+                (click)="categoryId(cat.id)">{{cat.category}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Company</mat-label>
+                <input matInput placeholder="Company" formControlName="companyId" (keyup)="CompanyFilter($event)" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let cmp of company" [value]="cmp.company"
+                        (click)="companyId(cmp.id)">
+                        {{cmp.company}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="outline" >
+                <mat-label>HSNCode</mat-label>
+                    <input matInput placeholder="HSN" formControlName="hsnId" (keyup)="HSNFilter($event)" [matAutocomplete]="auto2">
+                    <mat-autocomplete #auto2="matAutocomplete">
+                        <mat-option *ngFor="let option of hsn" [value]="option.code"
+                            (click)="HSNId(option.id)">
+                            {{option.code}}
+                        </mat-option>
+                    </mat-autocomplete>
+            </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Medicine Name</mat-label>
+            <input matInput placeholder="Medicine Name"  formControlName="name" (keypress)="keyPressAlpha($event)"> 
+        </mat-form-field>
+       
+     
+    
+        <!-- <mat-form-field appearance="outline">
+            <mat-label>HSN</mat-label>
+            <input matInput placeholder="HSN" formControlName="hsnTypeId" (keyup)="HSNFilter($event)" [matAutocomplete]="auto1">
+            <mat-autocomplete #auto1="matAutocomplete">
+                <mat-option *ngFor="let option of hsn" [value]="option.type"
+                    (click)="HSNId(option.hsnTypeId)">
+                    {{option.type}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field> -->
+        <mat-form-field appearance="outline"   >
+            <mat-label>Short Name</mat-label>
+            <input matInput placeholder="Short Name" formControlName="shortName"  (keypress)="keyPressAlphaNumeric($event)">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Packing</mat-label>
+            <input matInput placeholder="Packing" formControlName="packing"  (keypress)="keyPressNumeric($event)">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Units</mat-label>
+            <input matInput placeholder="Units" formControlName="units"  (keypress)="keyPressNumeric($event)">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>SpecialCategory</mat-label>
+            <input matInput placeholder="specialCategory" formControlName="specialCategory" (keyup)="specialCategoryFilter($event)" [matAutocomplete]="auto3">
+            <mat-autocomplete #auto3="matAutocomplete">
+                <mat-option *ngFor="let specialcategory of specialCategory" [value]="specialcategory.name"
+                    (click)="specialCategoryId(specialcategory.id)">
+                    {{specialcategory.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field appearance="outline" >
+            <mat-label>ScheduleCategory</mat-label>
+                <input matInput placeholder="scheduleCategory" formControlName="scheduleCategory" (keyup)="scheduleCategoryFilter($event)" [matAutocomplete]="auto4">
+                <mat-autocomplete #auto4="matAutocomplete">
+                    <mat-option *ngFor="let schedulecategory of scheduleCategory" [value]="schedulecategory.name"
+                        (click)="scheduleCategoryId(schedulecategory.id)">
+                        {{schedulecategory.name}}
+                    </mat-option>
+                </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Description" formControlName="description" > 
+        </mat-form-field>
+        <br><button mat-raised-button class="newButton" color="primary" (click)="onSubmit()">Save</button>
+        <p class="alert alert-success" *ngIf="showAlert" >Product Successfully Added!</p>
+    </form>
+</mat-card>
+
+

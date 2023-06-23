@@ -1,0 +1,64 @@
+<div class="card-margin">
+    <div class="mat-table matTable">
+        <mat-card class="mat-elevation-z0">
+            <mat-card-header>
+                <button mat-raised-button class="newButton" color="primary" [routerLink]="['new-attendance']"
+                    routerLinkActive="router-link-active">
+                    <mat-icon class="add">add_circle</mat-icon> Add
+                </button>
+                &nbsp;&nbsp;
+                <button class="newButton" mat-raised-button color="primary" (click)="exportTable()">
+                    <mat-icon class="add">description</mat-icon>Excel
+                </button>&nbsp;&nbsp;
+                <button class="newButton" mat-raised-button color="primary" (click)="downloadPDF()">
+                    <mat-icon class="add">picture_as_pdf</mat-icon>PDF
+                </button><span class="spacer"></span> <span class="spacer"></span>
+                <mat-form-field appearance="outline">
+                    <!-- <mat-label>Search</mat-label> -->
+                    <input matInput placeholder="Search" (keyup)="applyFilter($event)">
+                    <button matSuffix mat-icon-button>
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
+            </mat-card-header>
+        </mat-card>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> SNo. </th>
+                <td mat-cell *matCellDef="let element">{{dataSource.filteredData.indexOf(element)+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="userId">
+                <th mat-header-cell *matHeaderCellDef> UserName </th>
+                <td mat-cell *matCellDef="let element"> {{element.user.fullName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="attendance">
+                <th mat-header-cell *matHeaderCellDef> attendance </th>
+                <td mat-cell *matCellDef="let element"> {{element.attendance}} </td>
+            </ng-container>
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.date | date}} </td>
+            </ng-container>
+            <ng-container matColumnDef="discription">
+                <th mat-header-cell *matHeaderCellDef> discription </th>
+                <td mat-cell *matCellDef="let element"> {{element.discription}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div *ngIf="isLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="image" *ngIf="total <= 0">
+            <img src="{{noData.image}}" style="height:150px;width: 150px;">
+            <div>
+                {{noData.noDataFound}}
+            </div>
+        </div>
+        <mat-paginator #paginator [length]="total" [showFirstLastButtons]="true" [pageSize]="pageSize"
+            [pageSizeOptions]="totalLength">
+        </mat-paginator>
+
+    </div>
+</div>

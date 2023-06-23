@@ -1,0 +1,220 @@
+<div class="grid-container">
+  <mat-grid-list cols="4" rowHeight="170px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card  mat-elevation-z1" style="background-color:#b1e09e;color: white">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>attach_money</mat-icon>
+            <span>{{card.title}}</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <h1><b>{{totalSalesAmount | currency:'INR'}}</b></h1>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card  mat-elevation-z1" style="background-color:  rgb(245, 101, 130);color: white">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>payments</mat-icon> &nbsp;
+            <span>Expenses</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <h1><b>{{totalExpenses | currency:'INR'}}</b></h1>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card  mat-elevation-z1" style="background-color:  #2196F3;color: white">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>account_balance_wallet</mat-icon> &nbsp;
+            <span>Salary</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <h1><b>{{salaryTotalCount | currency:'INR'}}</b></h1>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card  mat-elevation-z1" style="background-color:mediumpurple;color: white">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>shop</mat-icon> &nbsp;
+            <span>Purchase</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <h1><b>{{totalPurchaseAmount | currency:'INR'}}</b></h1>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-card class="mat-elevation-z1">
+    <mat-card-header>
+      <mat-card-title>
+        Invoice
+      </mat-card-title>
+    </mat-card-header>
+    <mat-grid-list cols="2" rowHeight="400px">
+      <mat-grid-tile>
+        <mat-card  class="chart-cards mat-elevation-z0">
+          <div id="chartdiv1" style="height: 300px;"></div>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card style="width: 100%;" class="mat-elevation-z0">
+          <div>
+            <h3>Sales</h3>
+            <span>In Last 12 Months</span>
+          </div>
+          <div class="amount">
+            <h2><b>{{salesYearCount | currency:'INR'}}</b></h2>
+          </div>
+          <p class="line"></p>
+          <div>
+            <h3>Sales</h3>
+            <span>In Last 30 Days</span>
+          </div>
+          <div class="amount">
+            <h2><b>{{salesMonthCount | currency:'INR'}}</b></h2>
+          </div>
+          <p class="line"></p>
+          <div>
+            <h3>Purchase</h3>
+            <span>In Last 12 Months</span>
+          </div>
+          <div class="amount">
+            <h2><b>{{purchaseYearCount | currency:'INR'}}</b></h2>
+          </div>
+          <p class="line"></p>
+          <div>
+            <h3>Purchase</h3>
+            <span>In Last 30 Days</span>
+          </div>
+          <div class="amount">
+            <h2><b>{{purchaseMonthCount | currency:'INR'}}</b></h2>
+          </div>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card><br>
+
+  <!-- <br>
+
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile *ngFor="let card of dashboardCards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="chart-cards mat-elevation-z1">
+        <mat-card-header>
+          <mat-card-title>
+            Expenses
+          </mat-card-title>
+        </mat-card-header>
+        <google-chart [type]="type" [data]="data1" [columns]="columnNames1" [options]="lineOptions2">
+        </google-chart>
+      </mat-card>
+
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let card of dashboardCards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="chart-cards mat-elevation-z1">
+        <mat-card-header>
+          <mat-card-title>
+            Expense By type
+          </mat-card-title>
+        </mat-card-header>
+
+        <google-chart [type]="expensestype" [data]="expensesTypeData" [columns]="ExpTypecolumnNames"
+          [options]="pieOptions">
+        </google-chart>
+
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let card of dashboardCards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="chart-cards mat-elevation-z1">
+        <mat-card-header>
+          <mat-card-title>
+            Sales
+          </mat-card-title>
+        </mat-card-header>
+        <google-chart [type]="type" [data]="salesData" [columns]="salesColumnNames" [options]="salesOptions">
+        </google-chart>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let card of dashboardCards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="chart-cards mat-elevation-z1">
+        <mat-card-header>
+          <mat-card-title>
+            Purchase
+          </mat-card-title>
+        </mat-card-header>
+        <google-chart [type]="expType" [data]="purchaseData" [columns]="purchaseColumnNames"
+          [options]="transactionOptions">
+        </google-chart>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="chart-cards mat-elevation-z1">
+        <mat-card-header>
+          <mat-card-title>
+            Salary
+          </mat-card-title>
+        </mat-card-header>
+        <google-chart [type]="salesType" [data]="salaryChartTypeData" [columns]="salaryColumnNames"
+          [options]="lineOptions">
+        </google-chart>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <br>
+ -->
+
+  <!-- <mat-grid-list cols="1" rowHeight="350px">
+    <mat-grid-tile>
+      <mat-card class="chart-card mat-elevation-z1">
+        <div id="chartdiv1" style="height: 300px;"></div>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <br> -->
+  <mat-grid-list cols="2" rowHeight="350px">
+  <mat-grid-tile>
+    <mat-card class="chart-cards mat-elevation-z1">
+      <mat-card-header>
+        <mat-card-title>
+          Expenses
+        </mat-card-title>
+      </mat-card-header>
+      <div id="chartdiv2" style="height: 280px;"></div>
+    </mat-card>
+  </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="chart-card mat-elevation-z1">
+        <mat-card-header>
+          <mat-card-title>
+            Expense By type
+          </mat-card-title>
+        </mat-card-header>
+        <div id="chartdiv" style="height: 300px"></div>
+      </mat-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+  <br>
+  <mat-grid-list cols="1" rowHeight="300px">
+    <mat-grid-tile>
+      <mat-card class="chart-card mat-elevation-z1">
+        <div id="chartdiv3" style="height: 300px;"></div>
+      </mat-card>
+    </mat-grid-tile>
+    <!-- <mat-grid-tile>
+      <mat-card class="chart-card mat-elevation-z1">
+        <div id="chartdiv4" style="height: 300px;"></div>
+      </mat-card>
+    </mat-grid-tile> -->
+
+  </mat-grid-list>
+  <br>

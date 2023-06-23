@@ -1,0 +1,18 @@
+table {
+    width: 100%;
+  }
+  .highlight{
+    background: #D6EAF8;
+  }
+  
+  tr:focus{
+        outline: none;
+    }
+
+  .card-margin{
+    margin: 2%;
+  }
+  mat-toolbar{
+    /* background-color: white; */
+    border-radius: 30px;
+  }

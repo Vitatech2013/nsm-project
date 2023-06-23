@@ -1,0 +1,281 @@
+<div class="card-margin mat-elevation-z3">
+<div class="mat-table matTable">
+<mat-card >
+<form action="" [formGroup]="batchForm">
+         <!-- <mat-card-header>
+           <span class="spacer"></span>
+            <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input matInput placeholder="Search" (keyup)="applyFilter($event)">
+                <button matSuffix mat-icon-button>
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+        </mat-card-header> -->
+        <mat-toolbar>
+            <input type="Search" matInput (keyup)="applyFilter($event)">
+            <button matSuffix mat-icon-button>
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-toolbar>
+<div class="table">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef style="width:5%;"> SNo. </th>
+                <td mat-cell *matCellDef="let element">{{dataSource.filteredData.indexOf(element)+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="batchNumber">
+                <th mat-header-cell *matHeaderCellDef>BatchNumber </th>
+                <td mat-cell *matCellDef="let element"> {{element.batchNumber}} </td>
+            </ng-container>
+            <ng-container matColumnDef="mrp">
+                <th mat-header-cell *matHeaderCellDef> MRP </th>
+                <td mat-cell *matCellDef="let element"> {{element.mrp}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>ProductName </th>
+                <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+            </ng-container>
+           
+            <ng-container matColumnDef="packing">
+                <th mat-header-cell *matHeaderCellDef> Packing </th>
+                <td mat-cell *matCellDef="let element">{{element.product.packing}}* {{element.product.units}} </td>
+            </ng-container>
+            <ng-container matColumnDef="expiryDate">
+                <th mat-header-cell *matHeaderCellDef> ExpiryDate </th>
+                <td mat-cell *matCellDef="let element"> {{element.expiryDate |  date:'MM-YYYY' }} </td>
+            </ng-container>
+           
+            <ng-container matColumnDef="qty">
+                <th mat-header-cell *matHeaderCellDef> Qty</th>
+                <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="purchaseDate">
+                <th mat-header-cell *matHeaderCellDef> PurchaseDate </th>
+                <td mat-cell *matCellDef="let element"> {{element.purchase.purchaseDate |  date:'MM-YYYY'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="purchasePrice">
+                <th mat-header-cell *matHeaderCellDef> PurchasePrice </th>
+                <td mat-cell *matCellDef="let element"> {{element.purPrice}} </td>
+            </ng-container>
+           
+          
+            <ng-container matColumnDef="totalAmount">
+                <th mat-header-cell *matHeaderCellDef> TotalAmount </th>
+                <td mat-cell *matCellDef="let element"> {{element.totalAmount}} </td>
+            </ng-container>
+            <ng-container matColumnDef="margin">
+                <th mat-header-cell *matHeaderCellDef> Margin </th>
+                <td mat-cell *matCellDef="let element"> {{element.margin}} </td>
+            </ng-container>
+          
+            <!-- <ng-container matColumnDef="created">
+                <th mat-header-cell *matHeaderCellDef>Created </th>
+                <td mat-cell *matCellDef="let element"> {{element.created.fullName}} </td>
+            </ng-container> -->
+           
+           
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;  let i= index"
+            [ngClass]="{'highlight': selectedRowIndex == i+1}" (click)="onClick(row, i)"></tr>
+        </table>
+        <div *ngIf="isLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="image" *ngIf="total <= 0">
+            <img src="{{noData.image}}" style="height:150px;width: 150px;">
+            <div>
+                {{noData.noDataFound}}
+            </div>
+        </div>
+    </div>
+    <br>
+        <!-- <mat-paginator #paginator [length]="total" [showFirstLastButtons]="true" [pageSize]="pageSize"
+            [pageSizeOptions]="totalLength">
+        </mat-paginator> -->
+<div *ngIf="div">
+<div class="row">
+    <div class="col-sm-1">
+        &nbsp;
+        <mat-form-field appearance="outline" class="value" >
+            <mat-label>Batch Number</mat-label>
+            <input matInput formControlName="batchNumber" [readonly]="true" placeholder="BatchNumber">
+        </mat-form-field>
+       
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Product Name</mat-label>
+            <input matInput formControlName="name" [readonly]="true" placeholder="ProductName">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Company</mat-label>
+            <input matInput formControlName="company"  [readonly]="true" placeholder="Company">
+        </mat-form-field>
+       
+    </div>
+
+    <div class="col-sm-1">
+        &nbsp;
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Packing</mat-label>
+            <input matInput formControlName="packing" [readonly]="true" placeholder="Packing">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Qty</mat-label>
+            <input matInput formControlName="qty" [readonly]="true" placeholder="Qty" >
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Free Quantity</mat-label>
+            <input matInput formControlName="freeQuantity"  [readonly]="true" placeholder="Free Quantity">
+        </mat-form-field>
+       
+    </div>
+
+    <div class="col-sm-1">
+        &nbsp;
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Available Quantity</mat-label>
+            <input matInput formControlName="availableQuantity" [readonly]="true"  placeholder="availableQuantity">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Available Units</mat-label>
+            <input matInput formControlName="availableUnits"  [readonly]="true" placeholder="availableUnits">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Mfg.Date</mat-label>
+            <input matInput formControlName="mfgDate" date-format='MM-YYYY' [matDatepicker]="picker3"  [readonly]="true" placeholder="Mfg.Date">
+               
+            <!-- <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle> -->
+            <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+
+       
+    </div>
+
+    <div class="col-sm-1">
+        &nbsp;
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Expiry Date</mat-label>
+            <input matInput formControlName="expiryDate" date-format='MM-YYYY'  [matDatepicker]="picker2"  [readonly]="true" placeholder="Expiry Date">
+            <!-- <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle> -->
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>MRP</mat-label>
+            <input matInput formControlName="mrp" [value]="" [readonly]="true" placeholder="MRP">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Unit MRP</mat-label>
+            <input matInput formControlName="unitMrp" [value]="" [readonly]="true" placeholder="MRP">
+        </mat-form-field>
+
+       
+    </div>
+
+    <div class="col-sm-1">
+        &nbsp;
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Unit Price</mat-label>
+            <input matInput formControlName="unitPrice" [value]="" [readonly]="true" placeholder="MRP">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Purchase Price</mat-label>
+            <input matInput formControlName="purchasePrice" [readonly]="true" placeholder="PurchasePrice">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Discount</mat-label>
+            <input matInput formControlName="discount"  [readonly]="true" placeholder="discount">
+        </mat-form-field>
+       
+       
+       
+    </div>
+
+    <div class="col-sm-1">
+        &nbsp;
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Dis.Amount</mat-label>
+            <input matInput formControlName="disAmount"  [readonly]="true" placeholder="disAmount">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Company PTR</mat-label>
+            <input matInput formControlName="companyPTR"  [readonly]="true" placeholder="companyPTR">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>HSN</mat-label>
+            <input matInput formControlName="hsn"  [readonly]="true" placeholder="disAmount">
+        </mat-form-field>
+       
+    </div>
+
+    <div class="col-sm-1">
+        &nbsp;
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Gst</mat-label>
+            <input matInput formControlName="hsnGst"  [readonly]="true" placeholder="Gst">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Actual CostPrice</mat-label>
+            <input matInput formControlName="actualCostPrice" [readonly]="true" placeholder="actualCostPrice" >
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Gst.Amount</mat-label>
+            <input matInput formControlName="gst" [value]="" [readonly]="true" placeholder="gst">
+        </mat-form-field>
+       
+    </div>
+    <div class="col-sm-1">
+        &nbsp;
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Total Amount</mat-label>
+            <input matInput formControlName="totalAmount" placeholder="Total Amount" [readonly]="true">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Margin</mat-label>
+            <input matInput formControlName="margin" [value]="" placeholder="margin" [readonly]="true">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="value">
+            <mat-label>Created By</mat-label>
+            <input matInput formControlName="created" placeholder="created" [readonly]="true">
+        </mat-form-field>
+    </div>
+    <div class="col-sm-1">
+        <br><br><br><br><br><br>
+        <mat-form-field appearance="outline" class="value">
+            <mat-label> Created At</mat-label>
+            <input matInput formControlName="purchaseDate" date-format='MM-YYYY'  [matDatepicker]="picker1" [readonly]="true">
+               
+                <!-- <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle> -->
+                <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <p class="space"></p>
+    <div class="col-sm-2">
+        <h6>Purchase Details</h6>
+        <mat-form-field appearance="outline" class="name">
+            <mat-label>Invoice Number</mat-label>
+            <input matInput formControlName="invoiceNumber" placeholder="InvoiceNumber" [readonly]="true">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="name">
+            <mat-label>Purchase Date</mat-label>
+            <input matInput formControlName="date" date-format='MM-YYYY'  [matDatepicker]="picker" [readonly]="true">
+               
+                <!-- <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle> -->
+                <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="name">
+            <mat-label>Agency Name</mat-label>
+            <input matInput formControlName="supplierName" placeholder="Agency Name" [readonly]="true">
+        </mat-form-field>
+    </div>
+</div>
+</div>
+</form>
+</mat-card>
+</div>
+</div>

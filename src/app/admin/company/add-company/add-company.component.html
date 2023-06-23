@@ -1,0 +1,55 @@
+<mat-card>
+    <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Company</mat-label>
+            <input matInput type="text" formControlName="company" placeholder="Company"
+                (keypress)="keyPressAlphaNumeric($event)">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Short Name</mat-label>
+            <input matInput formControlName="shortName" placeholder="Short Name"
+                (keypress)="keyPressAlphaNumeric($event)">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Mobile No.</mat-label>
+            <input matInput formControlName="phone" placeholder="MobileNo" maxlength="10" (keypress)="keyPressNumeric($event)">
+            <mat-error
+                *ngIf="!companyForm.get('phone').hasError('required') &&companyForm.get('phone').hasError('pattern')">
+                Please enter valid Mobilenumber
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>email</mat-label>
+            <input matInput formControlName="email" placeholder="Email">
+            <mat-error
+                *ngIf="!companyForm.get('email').hasError('required') &&companyForm.get('email').hasError('pattern')">
+                Please enter valid emailId
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>PinCode</mat-label>
+            <input matInput formControlName="pin" placeholder="PinCode" (keypress)="keyPressNumeric($event)"
+                maxlength="6" minlength="6">
+            <mat-error *ngIf="!companyForm.get('pin').hasError('minlength')">
+                PinCode must be 6 digits .
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Fax</mat-label>
+            <input matInput formControlName="fax" placeholder="Fax" (keypress)="keyPressNumericFAX($event)">
+        </mat-form-field>
+        <mat-form-field class="address" appearance="outline">
+            <mat-label>City</mat-label>
+            <textarea matInput formControlName="city" placeholder="Enter Your City" (keypress)="keyPressAlpha($event)"></textarea>
+        </mat-form-field>
+        <mat-form-field class="address" appearance="outline">
+            <mat-label>Address</mat-label>
+            <textarea matInput formControlName="address" placeholder="Enter Your Address"
+                (keypress)="keyPressAlpha($event)"></textarea>
+        </mat-form-field>
+        <br><br>
+        <button class="button" mat-raised-button color="warn" class="newButton" [routerLink]="['/admin/company/']"
+            routerLinkActive="router-link-active">Close</button>
+        &nbsp;&nbsp;&nbsp;<button class="button" class="newButton" mat-raised-button color="primary">Save</button>
+    </form>
+</mat-card>

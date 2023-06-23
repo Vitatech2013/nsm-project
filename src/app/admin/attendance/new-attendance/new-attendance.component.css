@@ -1,0 +1,49 @@
+
+table {
+    width: 100%;
+  }
+  
+  /* td{
+    width: 10px;
+  } */
+  
+  .card-margin{
+    margin: 2% 2% 2% 2%;
+  }
+  
+  mat-toolbar{
+    background-color: white;
+  }
+  p{
+    text-align: center;
+  }
+ 
+  .search{
+      margin-left: 75%;
+  }
+  .view{  
+  cursor: pointer;
+  margin: 2px;
+  border: 1px solid rgb(231, 230, 230);
+  padding: 5px;
+  border-radius: 5px;
+  }
+  
+  .add{
+  margin-left: -5px;
+  font-size: 20px;
+  }
+ 
+  .exportButton{
+    height: 35px;
+  }
+  .matTable{
+  border: 1px solid #E5E7E9;
+  }
+  .image{
+    height: 80px;
+    width: 80px;
+  }
+  .spacer{
+    flex: 1 ;
+  }

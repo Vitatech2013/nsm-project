@@ -1,0 +1,132 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav mat-elevation-z0" fixedInViewport style="background-color:#607D8B;color:white;"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
+    <mat-toolbar   style="background-color:#607D8B;color:white;">
+      <img src="../../../assets/nsm.jpg" alt="NSM" class="logo">
+      <span class="spacer"></span>
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-nav-list class="sidenav-list">
+      
+      <a class="nav-compound" mat-list-item [routerLink]="['/admin']" routerLinkActive="router-link-active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>dashboard</mat-icon> Dashboard</a> 
+      <a class="nav-compound" mat-list-item [routerLink]="['/admin/pos-bill']" routerLinkActive="router-link-active">
+        <mat-icon>add_shopping_cart</mat-icon> POS/Bill</a>
+        <a mat-list-item [routerLink]="['/admin/sales']" routerLinkActive="router-link-active">
+          <mat-icon>add_shopping_cart</mat-icon>Sales</a>
+          <a mat-list-item [routerLink]="['/admin/NewSales']" routerLinkActive="router-link-active">
+            <mat-icon>add_shopping_cart</mat-icon>NewSales</a>
+            <a mat-list-item [routerLink]="['/admin/MonthlySales']" routerLinkActive="router-link-active">
+              <mat-icon>add_shopping_cart</mat-icon>MonthlySales</a>
+        <!-- 
+          <a mat-list-item [routerLink]="['/admin/sales-items']" routerLinkActive="router-link-active">
+            <mat-icon>add_shopping_cart</mat-icon>SalesItems</a>
+      <a mat-list-item [routerLink]="['/admin/PurchaseBatch']" routerLinkActive="router-link-active">
+        <mat-icon>price_change</mat-icon> Purchase</a>
+      <a mat-list-item [routerLink]="['/admin/batch']" routerLinkActive="router-link-active">
+        <mat-icon>group_work</mat-icon> Batch Master</a>
+      <a mat-list-item [routerLink]="['/admin/purchase-return']" routerLinkActive="router-link-active">
+        <mat-icon>price_change</mat-icon>Purchase Return</a>
+        <a mat-list-item [routerLink]="['/admin/sale-return']" routerLinkActive="router-link-active">
+          <mat-icon>price_change</mat-icon>Sales-Return</a> -->
+      <a class="nav-compound" mat-list-item [routerLink]="['/admin/products']" routerLinkActive="router-link-active">
+       <mat-icon>medication</mat-icon> Products</a>
+      <a class="nav-compound" mat-list-item [routerLink]="['/admin/payments']" routerLinkActive="router-link-active">
+      <mat-icon>account_balance_wallet</mat-icon> Payments</a>
+      <a class="nav-compound" mat-list-item [routerLink]="['/admin/expenses']" routerLinkActive="router-link-active">
+        <mat-icon>receipt</mat-icon> Expenses</a>
+      <a class="nav-compound" mat-list-item [routerLink]="['/admin/attendance']" routerLinkActive="router-link-active">
+        <mat-icon>brush</mat-icon>Attendance</a>
+      <a class="nav-compound" mat-list-item [routerLink]="['/admin/employees']" routerLinkActive="router-link-active"
+      [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>people</mat-icon> Employees</a>
+    </mat-nav-list>
+    <mat-accordion class="sidenav-list">
+      <mat-expansion-panel class="sidenav-list mat-elevation-z0"  style="background-color:#607D8B;color: white;">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="color: white;">
+            <mat-icon>settings</mat-icon>
+            <div class="nav-compound">Master</div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <a class="nav-emp" mat-list-item [routerLink]="['/admin/temp']" routerLinkActive="router-link-active">
+              <mat-icon>
+                file_upload
+                </mat-icon> Upload Products</a>
+          <a class="nav-emp"mat-list-item [routerLink]="['/admin/employees/employee-role']" routerLinkActive="router-link-active">
+            <mat-icon>person</mat-icon> Role</a>
+          <a  class="nav-emp"mat-list-item [routerLink]="['/admin/medicine-category']" routerLinkActive="router-link-active">
+            <mat-icon>medication</mat-icon>Category</a>
+
+            <a class="nav-emp" mat-list-item [routerLink]="['/admin/product-list']" routerLinkActive="router-link-active">
+              <mat-icon>medication</mat-icon> Product List</a>
+          <a class="nav-emp"mat-list-item [routerLink]="['/admin/company']" routerLinkActive="router-link-active">
+          <mat-icon>apartment</mat-icon>Company</a>
+          <a class="nav-emp" mat-list-item [routerLink]="['/admin/HSN']" routerLinkActive="router-link-active">
+            <mat-icon>apartment</mat-icon>HSN</a>
+
+          <a class="nav-emp" mat-list-item [routerLink]="['/admin/payment-type']" routerLinkActive="router-link-active">
+            <mat-icon>account_balance_wallet</mat-icon> Payment Type</a>
+
+          <a class="nav-emp" mat-list-item [routerLink]="['/admin/expense-type']" routerLinkActive="router-link-active">
+            <mat-icon>receipt</mat-icon>Expense Type</a>
+
+          <a class="nav-emp" mat-list-item [routerLink]="['/admin/doctors']" routerLinkActive="router-link-active">
+            <mat-icon>person</mat-icon> Doctors</a>
+
+          <a class="nav-emp" mat-list-item [routerLink]="['/admin/suppliers']" routerLinkActive="router-link-active">
+            <mat-icon>people</mat-icon> Suppliers</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="sidenav-list mat-elevation-z0"  style="background-color:#607D8B;color: white;">
+        <mat-expansion-panel-header>
+          <mat-panel-title  style="color: white;">
+            <mat-icon>reports</mat-icon>
+            <div>Reports</div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <a class="nav-emp"  mat-list-item [routerLink]="['/admin/salesReports']" routerLinkActive="router-link-active">
+            <mat-icon>person</mat-icon> Sales</a>
+          <a class="nav-emp"  mat-list-item [routerLink]="['/admin/purchaseReports']" routerLinkActive="router-link-active">
+            <mat-icon>person</mat-icon>Purchase</a>
+          <a class="nav-emp" mat-list-item [routerLink]="['/admin/expensesReports']" routerLinkActive="router-link-active">
+            <mat-icon>person</mat-icon> Expenses</a>
+          <a class="nav-emp"  mat-list-item [routerLink]="['/admin/saleItemsReports']" routerLinkActive="router-link-active">
+            <mat-icon>person</mat-icon> Sale Items</a>
+          <a class="nav-emp"  mat-list-item [routerLink]="['/admin/purchaseItemsReports']" routerLinkActive="router-link-active">
+            <mat-icon>person</mat-icon>Purchase Items</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="mat-elevation-z1"  style="background-color:#607D8B;color: white;">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button *ngIf="drawer.opened === false"
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>NS-Medicals</span>
+      <span class="spacer"></span>
+      <span class="lastLogin"> Last Login <br>{{ lastLogin | date: 'short' }}</span>
+       <!-- <img [src]="url+'/'+ image" -->
+      <img src="../../assets/img_avatar.png" mat-card-avatar class="example-header-image" [matMenuTriggerFor]="menu" alt="">
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/admin/profile']" routerLinkActive="router-link-active">
+          <mat-icon>person</mat-icon>Profile
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>Logout
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

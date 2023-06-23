@@ -1,0 +1,82 @@
+<div class="card-margin">
+  <div class="mat-table matTable">
+    <mat-card class="mat-elevation-z0">
+      <mat-card-header>
+        <button mat-raised-button class="newButton" color="primary" (click)="openDialog()">
+          <mat-icon class="add">add_circle</mat-icon> Add
+        </button>
+        <span class="spacer"></span>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Search" autocomplete="off" type="search" (keyup)="applyFilter($event)">
+          <button matSuffix mat-icon-button>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </mat-card-header>
+    </mat-card>
+    <!-- <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>S.No</th>
+        <td mat-cell *matCellDef="let exType"> {{dataSource.filteredData.indexOf(exType)+1}} </td>
+      </ng-container>
+      <ng-container matColumnDef="expenseType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>expenseType </th>
+        <td mat-cell *matCellDef="let exType"> {{exType.expenseType}} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+        <td mat-cell *matCellDef="let exType"> {{exType.description}} </td>
+      </ng-container>
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> CreatedAt </th>
+        <td mat-cell *matCellDef="let exType"> {{exType.createdAt | date}} </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let exType">
+          <mat-slide-toggle matTooltipPosition="left" (click)="changeStatus(exType.id, exType.status)"
+            [checked]="exType.status === true" class="primary">
+          </mat-slide-toggle>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+        <td mat-cell *matCellDef="let exType" class="action-link">
+          <mat-icon class="view" color="primary" matTooltip="View" (click)="updateExpensesData(exType.id)">
+            mode
+          </mat-icon>
+          <mat-icon class="view" color="warn" matTooltip="Delete" (click)="deleteExpensesData(exType.id)">
+            delete</mat-icon>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let exType; columns: displayedColumns;">
+      </tr>
+    </table>
+
+    <div *ngIf="isLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div class="image" *ngIf="total <= 0">
+      <img src="{{noData.image}}" style="height:150px;width: 150px;">
+      <div>
+        {{noData.noDataFound}}
+      </div>
+    </div>
+    <mat-paginator #paginator [showFirstLastButtons]="true" [pageSize]="pageSize" [pageSizeOptions]="totalLength">
+    </mat-paginator> -->
+    <ag-grid-angular 
+    pagination="true"
+    paginationPageSize="5"
+    style="width:100%; height:400px" 
+    class="ag-theme-alpine"
+    [defaultColDef]="defaultColDef"
+    [rowData]="dataSource.filteredData" 
+    [columnDefs]="columnDefs"
+    (gridReady)="onGridReady($event)"
+    [editType]="'fullRow'"
+    (rowEditingStopped)="(onRowEditingStopped)"
+    [frameworkComponents]="frameworkComponents">
+  </ag-grid-angular>
+  </div>
+</div>

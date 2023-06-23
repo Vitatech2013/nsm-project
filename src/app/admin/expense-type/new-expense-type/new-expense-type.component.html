@@ -1,0 +1,20 @@
+<div>
+    <h2 mat-dialog-title>ExpenseType</h2>
+    <form action="" [formGroup]="expensesTypeForm" (ngSubmit)="expensesType()">
+        <mat-dialog-content class="dailogcontent">
+            <mat-form-field appearance="outline">
+                <mat-label>expenseType</mat-label>
+                <input matInput type="text" formControlName="expenseType" placeholder="expenseType" (keypress)="keyPressAlphaNumeric($event)">
+            </mat-form-field><br>
+            <mat-form-field appearance="outline">
+                <mat-label>description</mat-label>
+                <input matInput type="text" formControlName="description" placeholder="description">
+            </mat-form-field><br>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-dialog-close mat-raised-button class="newButton" color="warn">Close</button>
+            <button [mat-dialog-close]="true" class="newButton" cdkFocusInitial type="submit" mat-raised-button
+                color="primary" [disabled]="!expensesTypeForm.valid">Save</button>
+        </mat-dialog-actions>
+    </form>
+</div>

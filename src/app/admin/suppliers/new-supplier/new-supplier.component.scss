@@ -1,0 +1,98 @@
+mat-card{
+    margin: 15px;
+}
+mat-form-field{
+    margin: 0.5%;
+    width: 32%;
+    height: 60px;
+
+}
+.formField{
+    margin: 1%;
+    width: 18%;
+}
+.PAN
+    {
+        text-transform: uppercase;
+    }
+    .error
+    {
+        color: Red;
+        font-size: 10px;
+        visibility: hidden;
+    }
+    .TAN
+        {
+            text-transform: uppercase;
+        }
+        .error1
+        {
+            color: Red;
+            font-size: 10px;
+            visibility: hidden;
+        }
+// .address{
+//     width: 500px;
+//     height: 10px;
+// }
+.gst{
+    margin: 1%;
+    width: 23%;
+    height: 60px;
+}
+.fax{
+    width: 300px;
+}
+.name{
+    width: 450px;
+}
+.reason{
+    width: 98%;
+}
+/* .value
+{
+  width: 254px; 
+} */
+.name1{
+    width: 278px; 
+  }
+//   .value
+//   {
+//     width: 206px; 
+//   }
+  textarea{
+    height: 15px;
+}
+.image-preview{
+    margin-top: 4px;
+    height: 210px;
+    width: 100%;
+    border-radius: 5px;
+}
+.image-show{
+    margin-top: 4px;
+    height: 210px;
+    width: 100%;
+    border-radius: 5px;
+}
+  button{
+    width: 10%;
+    height: 35px;
+    border-radius: 3px;
+}
+  .image-upload-button{
+    width: 90%
+    }
+    input[type="file"]{
+        visibility: hidden;
+    }
+    .button{
+        margin-left: 4%;
+    }
+    .newButton{
+        /* margin-left: -2.1%; */
+      
+        background-color: #607D8B;
+      }
+    
+@import "~bootstrap/dist/css/bootstrap.min.css";

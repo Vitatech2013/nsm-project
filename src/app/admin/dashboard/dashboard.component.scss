@@ -1,0 +1,103 @@
+.grid-container {
+  margin: 15px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  right: 15px;
+  bottom: 10px;
+  height: 100px;
+}
+.expenses-cards{
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  height: 100%;
+}
+.dashboard-map{
+  position: absolute;
+  top: -10px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  /* height: 100px; */
+}
+.chart-cards{
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  right: 15px;
+  height: 700px; 
+}
+.chart-card{
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  right: 10px;
+  height: 700px;
+  width: 100%;
+}
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+.invoice-card{
+  height: 300px; 
+}
+.amount{
+float: right;
+margin-top: -40px;
+color:#6495ED;
+}
+.line{
+  border: dashed 1px #c6c6c6;
+}
+/* .content{
+ margin-left: 70%;
+ margin-top: -290px;
+} */
+table {
+  width: 100%;
+}
+
+td{
+  width: 10px;
+}
+
+.card-margin{
+  margin: 1% 1% 1% 1%;
+}
+
+mat-toolbar{
+  background-color: white;
+}
+p{
+  text-align: center;
+}
+.search{
+  margin-left: 75%;
+}
+
+
+// .amount{
+//   float: right;
+//   margin-top: -40px;
+//   color:#6495ED;
+//   }
+//   .line{
+//     border: dashed 1px #c6c6c6;
+//   }
+//   h3{
+//     font-size: small;
+//   }
+//   @import '~bootstrap/dist/css/bootstrap.min.css'
+  

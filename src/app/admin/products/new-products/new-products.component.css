@@ -1,0 +1,29 @@
+
+mat-form-field{
+    margin: 1%;
+    width: 23%;
+    height: 55px;
+}
+.mycsssnackbartest {
+    background-color: blue;
+  }
+
+button{
+    width: 10%;
+    margin: 1%;
+}
+.note{
+    width: 98%;
+}
+mat-card{
+    margin: 15px;
+}
+.newButton{
+    background-color: #607D8B;
+    /* margin-left: -2%; */
+
+  }
+  ::ng-deep .custom-style{
+    background-color:#d4edda ;
+    color:black;
+  }

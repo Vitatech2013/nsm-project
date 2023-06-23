@@ -1,0 +1,60 @@
+
+<div class="card-margin mat-elevation-z3">
+    <div class="mat-table matTable">
+        <mat-card class="mat-elevation-z0">
+            <mat-card-header>
+                <!-- <button mat-raised-button class="newButton" color="primary" (click)="openDialog()"
+                    routerLinkActive="router-link-active">
+                    <mat-icon class="add">add_circle</mat-icon> Add<span class="spacer"></span>
+                </button><span class="spacer"></span> -->
+                <mat-form-field>
+                    <mat-label>Search</mat-label>
+                    <input matInput placeholder="Search" (keyup)="applyFilter($event)">
+                    <button matSuffix mat-icon-button>
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
+            </mat-card-header>
+        </mat-card>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> SNo. </th>
+                <td mat-cell *matCellDef="let element">{{dataSource.filteredData.indexOf(element)+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef> Category </th>
+                <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+            </ng-container>
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+
+<!--         
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element" class="action-link">
+                    <mat-icon class="view" color="primary" matTooltip="View" (click)="updateCategory(element.id)">
+                        mode</mat-icon>
+                    <mat-icon class="view" color="warn" matTooltip="Delete" (click)="DeleteCategory(element.id)">
+                        delete</mat-icon>
+                </td>
+            </ng-container> -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div *ngIf="isLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="image" *ngIf="total <= 0">
+            <img src="{{noData.image}}" style="height:150px;width: 150px;">
+            <div>
+                {{noData.noDataFound}}
+            </div>
+        </div>
+        <mat-paginator #paginator [length]="total" [showFirstLastButtons]="true" [pageSize]="pageSize"
+            [pageSizeOptions]="totalLength">
+        </mat-paginator>
+    </div>
+</div>

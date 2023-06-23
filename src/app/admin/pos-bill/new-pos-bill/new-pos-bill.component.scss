@@ -1,0 +1,104 @@
+.div{
+    margin:3% 3% 3% 3%;
+}
+mat-form-field{
+      margin: 1% -1% -2% 2%;
+     
+     /* max-width: 170px; */
+    
+ }
+// mat-form-field{
+//   margin: 2px 2px 2px 2px;
+//   width: 244px;
+// }
+.name{
+  width: 314px; 
+}
+.value
+{
+  width: 234px; 
+}
+ textarea{
+    height: 15px;
+} 
+.button{
+    margin-left: 4%;
+}
+
+input[type="file"]{
+    visibility: hidden;
+}
+    
+.image-preview{
+    height: 7rem;
+    width: 1rem 0;
+    margin-left: 40%;
+    margin-top: -40px;
+    /* border-radius: 50%; */
+}
+.image-show{
+    height: 7rem;
+    width: 1rem 0;
+    margin-left: 25%;
+    margin-top: -80px;
+    /* border-radius: 50%; */
+}
+.image-preview img{
+    height: 100%;
+}
+.image-show img{
+    height: 100%;
+}
+
+table {
+    width: 100%;
+  }
+  
+  td{
+    width: 10%;
+  }
+  
+  .card-margin{
+    margin: 2% 2% 2% 2%;
+  }
+  
+  mat-toolbar{
+    background-color: white;
+    border: 1px solid rgb(241, 240, 240);
+    height: 50px;
+}
+  p{
+    text-align: center;
+  }
+  .spacer{
+    flex: 1 1 auto;
+  }
+  
+  .view{  
+  cursor: pointer;
+  margin: 2px;
+  border: 1px solid rgb(231, 230, 230);
+  padding: 5px;
+  border-radius: 5px;
+  }
+  
+  .newButton{
+    margin-left: -2.1%;
+    height: 35px;
+    background-color: #607D8B;
+  }
+  
+  .exportButton{
+    height: 35px;
+  }
+  .matTable{
+  border: 1px solid #E5E7E9;
+  }
+  .allInput{
+    width: 50px;
+    height: 100%;
+    padding: 8px;
+    text-align: center;
+    border: none;
+  }
+  @import "~bootstrap/dist/css/bootstrap.min.css";

@@ -1,0 +1,42 @@
+img{
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+.form-field{
+    width: 70%;
+    margin-left: 15%;
+}
+mat-card{
+    margin: 1%;
+}
+.card-margin{
+    margin-top: 75px;
+    height: 300px;
+    }
+    .textarea{
+        width:670px;
+    }
+img{
+    width: 150px;
+    height: 150px;
+}
+mat-form-field{
+    width: 40%;
+    margin: 0 4% 0 4%;
+}
+.form-field{
+  width: 88%;
+  margin: 0 4% 0 4%;
+}
+.button{
+    margin-left: 4%;
+}
+button{
+    height: 30px;
+    border-radius: 3px;
+}
+input[type="file"]{
+    visibility: hidden;
+}
+@import "~bootstrap/dist/css/bootstrap.min.css";

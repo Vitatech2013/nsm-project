@@ -1,0 +1,143 @@
+<mat-card class="mat-elevation-z3">
+    <form [formGroup]="employeesForm">
+        <div class="row">
+            <!-- <div class="col-sm-4">
+                <mat-form-field appearance="outline" *ngIf="!roleField">
+                    <mat-label>Role</mat-label>
+                    <mat-select formControlName="roleId" [(value)]="selected">
+                        <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" *ngIf="roleField">
+                    <mat-label>Role</mat-label>
+                    <mat-select formControlName="roleId" disabled>
+                        <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div> -->
+            <div class="col-sm-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>FullName</mat-label>
+                    <input matInput placeholder="FullName" formControlName="fullName" (keypress)="keyPressAlphaNumeric($event)">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field appearance="outline" *ngIf="!roleField">
+                    <mat-label>UserName</mat-label>
+                    <input matInput placeholder="UserName" formControlName="userName" (keypress)="keyPressAlphaNumeric($event)">
+                </mat-form-field>
+                <mat-form-field appearance="outline" *ngIf="roleField">
+                    <mat-label>UserName</mat-label>
+                    <input matInput placeholder="UserName" formControlName="userName" readonly>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Mobile Number</mat-label>
+                    <input matInput formControlName="mobile" placeholder="Mobile Number" maxlength="10" (keypress)="keyPressNumeric($event)">
+                    <mat-error
+                        *ngIf="!employeesForm.get('mobile').hasError('required') &&employeesForm.get('mobile').hasError('pattern')">
+                        Please enter valid Mobilenumber
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone</mat-label>
+                    <input matInput placeholder="Phone" formControlName="phone" (keypress)="keyPressNumeric($event)">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>EmailId</mat-label>
+                    <input matInput formControlName="email" placeholder="EmailId" type="email">
+                    <mat-error
+                        *ngIf="!employeesForm.get('email').hasError('required') &&employeesForm.get('email').hasError('pattern')">
+                        Please enter valid EmailId
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option value="male">Male</mat-option>
+                        <mat-option value="female">Female</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <!-- <div class="col-sm-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Blood Group</mat-label>
+                    <mat-select formControlName="bloodGroup">
+                        <mat-option value="A+">A+</mat-option>
+                        <mat-option value="A-">A-</mat-option>
+                        <mat-option value="B+">B+</mat-option>
+                        <mat-option value="B-">B-</mat-option>
+                        <mat-option value="O+">O+</mat-option>
+                        <mat-option value="O-">O-</mat-option>
+                        <mat-option value="AB+">AB+</mat-option>
+                        <mat-option value="AB-">AB-</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div> -->
+            <div class="col-sm-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Date Of Birth</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dob">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-8">
+                <mat-form-field appearance="outline">
+                    <mat-label>Address</mat-label>
+                    <input matInput placeholder="Address" formControlName="address" (keypress)="keyPressAlpha($event)">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <!-- <div class="col-sm-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Date Of Join</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="doj">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+            </div> -->
+           
+           
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button type="button" class="button image-upload-button" *ngIf="!roleField" mat-raised-button
+                            (click)="filePicker.click()">
+                            <mat-icon>image</mat-icon> Select Image
+                        </button>
+                        <button type="button" class="button image-upload-button"  *ngIf="roleField" mat-raised-button
+                            (click)="filePicker.click()">
+                            <mat-icon>image</mat-icon> Select New Image
+                        </button>
+                        <input type="file" #filePicker (change)="onFileSelected($event)">
+                    </div>
+                    <div class="col-sm-3" *ngIf="showImage">
+                        <div class="image-show">
+                            <img [src]="Url+ '/'+ imagePath" class="image-show">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div *ngIf="imagePreview !== '' && imagePreview">
+                            <img [src]="imagePreview" class="image-preview">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <button mat-raised-button color="warn" type="reset" class="newButton" *ngIf="!id">Clear</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" mat-raised-button color="accent" [routerLink]="['/admin/employees']"
+        class="newButton"  routerLinkActive="router-link-active">Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" mat-raised-button color="primary" class="newButton" (click)="onSubmit()">Save</button>
+    </form>
+</mat-card>

@@ -1,0 +1,113 @@
+<div class="container">
+  <mat-card class=" mat-elevation-z3">
+    <div class="main-body">
+      <div class="row gutters-sm">
+        <div class="col-md-3 mb-3">
+          <mat-card class="card-margin mat-elevation-z2">
+            <mat-card-content>
+              <div class="d-flex flex-column align-items-center text-center">
+                <img [src]="Url + '/' + imagePath" mat-card-avatar *ngIf="!imagePreview" (click)="filePicker.click()">
+                <input type="file" #filePicker (change)="onFileSelected($event)">
+                <div *ngIf="imagePreview !== '' && imagePreview">
+                  <img [src]="imagePreview" [alt]="employeesForm.value.Image" mat-card-avatar
+                    (click)="filePicker.click()">
+                </div>
+                <div class="mt-3">
+                  <h2>{{fullName}}</h2>
+                  <p class="text-secondary mb-1">{{role}}</p>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-md-9">
+          <mat-tab-group animationDuration="0ms">
+            <mat-tab label="Edit Profile">
+              <br>
+              <form [formGroup]="employeesForm" (ngSubmit)="employeeUpdate()">
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Full Name</mat-label>
+                  <input matInput formControlName="fullName" placeholder="Full Name" type="text"
+                    (keypress)="keyPressAlphaNumeric($event)">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>User Name</mat-label>
+                  <input matInput formControlName="userName" placeholder="User Name" type="text" readonly
+                    (keypress)="keyPressAlphaNumeric($event)">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>EmailId</mat-label>
+                  <input matInput formControlName="email" placeholder="EmailId" type="email">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Mobile Number</mat-label>
+                  <input matInput formControlName="mobile" placeholder="Mobile Number" maxlength="10"
+                    (keypress)="keyPressNumeric($event)">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Gender</mat-label>
+                  <input matInput formControlName="gender" placeholder="Gender" type="text">
+                </mat-form-field>
+
+                <!-- <mat-form-field appearance="outline">
+                  <mat-label>Blood Group</mat-label>
+                  <input matInput formControlName="blood" placeholder="Blood Group">
+                </mat-form-field> -->
+
+                <mat-form-field appearance="outline">
+                  <mat-label>DOB</mat-label>
+                  <input matInput formControlName="dob" [matDatepicker]="picker1">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                
+                <!-- <mat-form-field appearance="outline">
+                  <mat-label>DOJ</mat-label>
+                  <input matInput formControlName="doj" [matDatepicker]="picker2">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field> -->
+
+                <mat-form-field appearance="outline" class="textarea">
+                  <mat-label>Address</mat-label>
+                  <textarea  matInput formControlName="address" placeholder="Address"
+                    (keypress)="keyPressAlpha($event)"></textarea>
+                </mat-form-field>
+                <br>
+                <span class="button"></span>
+                <button type="submit" mat-raised-button color="primary">Save</button>
+
+              </form>
+            </mat-tab>
+            <mat-tab label="Change Password">
+              <br>
+              <form [formGroup]="changePasswordForm">
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>Old Password</mat-label>
+                  <input matInput formControlName="password" placeholder="Old password"
+                    (keypress)="keyPressAlphaNumerical($event)">
+                </mat-form-field><br>
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>New Password</mat-label>
+                  <input matInput formControlName="newPassword" placeholder="New password" type="text"
+                   >
+                </mat-form-field><br>
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>Confirm New Password</mat-label>
+                  <input matInput formControlName="confirmPassword" placeholder="Confirm new password"
+                    (keypress)="keyPressAlphaNumerical($event)">
+                </mat-form-field><br>
+                <button mat-raised-button class="form-field" (click)="changePassword()" color="primary">Save</button>
+              </form>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,152 @@
+.card1{
+    margin: 1%;
+  }
+  .formField{
+      width: 100%;
+  }
+ 
+  .spacer{
+    flex: 1 1 auto;
+  }
+  
+  .add{
+    margin-left: -35px;
+    }
+    .purchaseData{
+      border: 1px solid rgb(241, 240, 240);
+    }
+   
+  //  .purchaseData .span{
+  //   font-weight: bold;
+  //   font-size: 18px;
+  // }
+ .purchaseData .address{
+    font-size: 15px;
+  }
+  
+  .save{
+    display: flex;
+    margin: auto;
+  }
+  .table{
+    height: 170px;
+    overflow: scroll;
+  }
+  .mat-form-field {
+    font-size: 12px;
+}
+.mat-header-cell {
+  font-size: 10px;
+  font-weight: 12px
+}
+
+.mat-cell, .mat-footer-cell {
+  font-size: 12px
+}
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid rgb(241, 240, 240);
+    }
+    td{
+      border: 1px solid rgb(241, 240, 240);
+      text-align: center;
+    }
+   table th{
+      border: 1px solid rgb(241, 240, 240);
+      text-align: center;
+    }
+  .view{  
+    // text-align: center;
+      cursor: pointer;
+      margin: 2px;
+      border: 1px solid rgb(231, 230, 230);
+      border-radius: 5px;
+      width: 35px;
+      height: 27px;
+     }
+     
+     .totalTable{
+      border-collapse: collapse;
+      border: none;
+    }
+    .totalTable td{
+      border: none;
+    }
+    .calculations{
+      border: 1px solid rgb(241, 240, 240);
+    }
+    .calculations .input{
+      width: 120px;
+      border: 1px solid rgb(163, 162, 162);
+      border-radius: 5px;
+      font-size: 15px;
+      margin: 3px;
+      text-align: center;
+    }
+    .calculations .form-contrl{
+      width: 100%;
+    }
+    .calculations label{
+      font-size: 14px;
+    }
+
+    .image{
+      text-align: center;
+      background-color: white;
+      div{
+        text-align: center;
+        font-size: 30px;
+        color: #CACFD2;
+        font-weight: 400;
+    }
+  }
+  button{
+    width: 100%;
+    height: 34px;
+    border-radius: 3px;
+
+  }
+  .newButton{
+    background-color: #607D8B;
+
+  }
+  // .view{  
+  // cursor: pointer;
+  // margin: 2px;
+  // border: 1px solid rgb(231, 230, 230);
+  // padding: 5px;
+  // border-radius: 5px;
+  // }
+  
+  
+  .highlight{
+    background: #D6EAF8;
+  }
+
+  .mat-row,
+  .mat-header-row {
+   display: table-row;
+   height: 35px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  // ::-webkit-scrollbar-track {
+  //   box-shadow: inset 0 0 5px grey;
+  //   border-radius: 10px;
+  // }
+  ::-webkit-scrollbar-thumb {
+    background: #64B5F6; 
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #64B5F6; 
+  }
+
+    @import  "~bootstrap/dist/css/bootstrap.min.css";
+    
+  
+  

@@ -1,0 +1,70 @@
+
+
+table {
+    width: 100%;
+  }
+
+  td{
+    width:5%;
+  }
+  th{
+    font-weight: bold;
+  }
+  tr.mat-footer-row {
+    font-weight: bold;
+  }
+  
+  img{
+    margin: 2px;
+    height: 50px;
+    width: 50px;
+  }
+
+  .card-margin{
+    margin: 1%;
+  }
+  
+.view{  
+  cursor: pointer;
+  margin: 2px;
+  border: 1px solid rgb(231, 230, 230);
+  border-radius: 5px;
+}
+.matTable{
+border: 1px solid #E5E7E9;
+}
+.image{
+  text-align: center;
+  background-color: white;
+  div{
+      text-align: center;
+      font-size: 30px;
+      color: #CACFD2;
+      font-weight: 400;
+  }
+}
+mat-form-field{
+  width: 100%;
+  font-size: 12px;
+}
+.dateSearch{
+  
+  background-color: #607D8B;
+  margin-top: 5px;
+  height: 55%;
+  border-radius: 4px;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+
+::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+
+
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+
+    transform: translateY(-1.1em) scale(.75);
+
+    width: 133.33333%
+}
+@import "~bootstrap/dist/css/bootstrap.min.css";

@@ -1,0 +1,14 @@
+<mat-card>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <button type="button" class="button" mat-raised-button (click)="filePicker.click()">
+                <mat-icon>image</mat-icon> Select File
+            </button>&nbsp;<span>{{fileName}}</span>
+            <input type="file" #filePicker (change)="onFileSelected($event)" accept=".csv,.xlsx,.xls"><br>
+            <button mat-raised-button color="primary" class="bgcolor" (click)="onSubmit()">Save</button>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+</mat-card>

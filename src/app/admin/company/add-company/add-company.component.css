@@ -1,0 +1,23 @@
+mat-form-field{
+    width: 31.33%;
+    margin: 1%;
+    height: 50px;
+}
+.button{
+    width: 10%;
+    margin: 1%;
+}
+
+ .address{
+    width: 48%;
+    margin: 1%;
+    height: 40px;
+ } 
+ mat-card{
+    margin: 1%;
+}
+.newButton{
+    background-color: #607D8B;
+    /* margin-left: -2%; */
+
+  }

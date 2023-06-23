@@ -1,0 +1,112 @@
+.div{
+    margin:0.5%;
+}
+mat-form-field{
+  font-size: 12px;
+}
+.card-margin{
+margin: 0.5%;
+}
+table{
+width: 100%
+}
+.textArea{
+  margin: 1%;
+  width: 98%;
+}
+.name{
+  margin: 0.5%;
+  width: 23%;
+  height: 50px;
+}
+.description{
+  width: 370px;
+}
+.value
+{
+  width: 154px; 
+}
+.mat-form-field{
+  height: 50px;
+
+}
+.allInput{
+  width: 50px;
+  height: 100%;
+  padding: 8px;
+  text-align: center;
+  border: none;
+}
+.dateInput{
+  width: 60px;
+  height: 33px;
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+}
+.highlight{
+  background: #D6EAF8;
+}
+
+tr:focus{
+      outline: none;
+  }
+.save{
+  width: 100%;
+ }
+  button{
+    height: 35px;
+    border-radius: 3px;
+}
+.select{
+  text-align: center;
+  height: 36px;
+  border: 1px solid rgb(226, 220, 220);
+  border-radius: 5px;
+}
+.invisible{
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+thead{
+display: none;
+}
+.action{
+  text-align: center;
+  cursor: pointer;
+  margin: 2px;
+  border: 1px solid rgb(231, 230, 230);
+  height: 28px;
+  // padding: 2px;
+  border-radius: 5px;
+ }
+ .batch{
+   overflow: scroll;
+   height: 150px;
+ }
+   
+ .mat-row,
+ .mat-header-row {
+  display: table-row;
+  height: 35px;
+ }
+ 
+ ::-webkit-scrollbar {
+   width: 10px;
+   height: 15px;
+ }
+//  ::-webkit-scrollbar-track {
+//    box-shadow: inset 0 0 5px grey;
+//    border-radius: 10px;
+//  }
+ ::-webkit-scrollbar-thumb {
+   background: #64B5F6; 
+   border-radius: 10px;
+ }
+ ::-webkit-scrollbar-thumb:hover {
+   background: #64B5F6; 
+ }
+@import "~bootstrap/dist/css/bootstrap.min.css";
+

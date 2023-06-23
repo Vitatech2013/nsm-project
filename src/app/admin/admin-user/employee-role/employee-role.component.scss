@@ -1,0 +1,80 @@
+
+table {
+  width: 100%;
+}
+
+// td{
+//   width: 1px
+// }
+
+.card-margin{
+  margin: 1%;
+}
+
+mat-toolbar{
+  background-color: white;
+}
+p{
+  text-align: center;
+}
+.spacer{
+  flex: 1 1 auto;
+}
+
+.view{  
+cursor: pointer;
+margin: 2px;
+border: 1px solid rgb(231, 230, 230);
+padding: 3px;
+border-radius: 5px;
+}
+
+.add{
+margin-left: -5px;
+font-size: 20px;
+}
+.newButton{
+  margin-left: -2.1%;
+  height: 35px;
+  background-color: #607D8B;
+}
+
+.exportButton{
+  height: 35px;
+}
+
+th{
+  font-weight: bold;
+}
+
+.image{
+  text-align: center;
+  background-color: white;
+  div{
+    text-align: center;
+    font-size: 30px;
+    color: #CACFD2;
+    font-weight: 400;
+}
+}
+
+.matTable{
+border: 1px solid #E5E7E9;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+
+::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+
+
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+
+    transform: translateY(-1.1em) scale(.75);
+
+    width: 133.33333%
+}
+  

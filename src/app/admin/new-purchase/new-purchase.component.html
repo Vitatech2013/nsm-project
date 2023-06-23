@@ -1,0 +1,436 @@
+<mat-card class="mat-elevation-z5">
+    <form [formGroup]="purchaseForm">
+        <div class="purchaseData">
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field class="formField" appearance="outline">
+                        <mat-label>Agency Name</mat-label>
+                        <input autofocus type="text" placeholder="Agency Name" [value]="supplierName" (keyup)="supplierFilter($event)" matInput
+                            [matAutocomplete]="auto" required>
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of suppliers" [value]="option.user.fullName"
+                                (click)="supplierId(option.id)">
+                                {{option.user.fullName}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field class="formField" appearance="outline">
+                        <mat-label>Purchase Invc.Number</mat-label>
+                        <input matInput formControlName="purInvoiceNum" placeholder="Purchase Invc.Number" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field class="formField" appearance="outline">
+                        <mat-label>Purchase Date</mat-label>
+                        <input matInput type="date" placeholder="Date" formControlName="purchaseDate" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field class="formField" appearance="outline">
+                        <mat-label>Bill Type</mat-label>
+                        <mat-select formControlName="billType" placeholder="Bill Type" required>
+                            <mat-option value="credit">Credit</mat-option>
+                            <mat-option value="cash">Cash</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <span>{{supplierAddress1}}</span>&nbsp;<span>{{supplierAddress2}}</span><br>
+                    <span>{{supplierAddress3}}</span>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field class="formField" appearance="outline">
+                        <mat-label>Note</mat-label>
+                        <input  matInput placeholder="Enter Note or Comment..." formControlName="description">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div><br>
+        <div  *ngIf="div">
+            <table mat-table matSort  [dataSource]="batchData3" class="mat-elevation-z2">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> S.No </th>
+                    <td mat-cell *matCellDef="let element"> {{batchData3.filteredData.indexOf(element)+1}} </td>
+                </ng-container>
+                <ng-container matColumnDef="batchNumber">
+                    <th mat-header-cell *matHeaderCellDef> Batch Number </th>
+                    <td mat-cell *matCellDef="let element"> {{element.batchNumber}} </td>
+                </ng-container>
+                <ng-container matColumnDef="productId">
+                    <th mat-header-cell *matHeaderCellDef> Product </th>
+                    <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+                </ng-container>
+                 <ng-container matColumnDef="company">
+                    <th mat-header-cell *matHeaderCellDef> Company </th>
+                    <td mat-cell *matCellDef="let element"> {{element.shortName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="expiryDate">
+                    <th mat-header-cell *matHeaderCellDef> Expiry </th>
+                    <td mat-cell *matCellDef="let element"> {{element.expiryDate |date:'MM-YYYY'}} </td>
+                </ng-container>
+                <ng-container matColumnDef="unitMrp">
+                    <th mat-header-cell *matHeaderCellDef> Mrp </th>
+                    <td mat-cell *matCellDef="let element"> {{element.mrp}} </td>
+                </ng-container>
+                <ng-container matColumnDef="availableUnits">
+                    <th mat-header-cell *matHeaderCellDef> availableUnits </th>
+                    <td mat-cell *matCellDef="let element"> {{element.availableUnits}} </td>
+                </ng-container>
+                <ng-container matColumnDef="freeQuantity">
+                    <th mat-header-cell *matHeaderCellDef> FreeQuantity </th>
+                    <td mat-cell *matCellDef="let element"> {{element.freeQuantity}} </td>
+                </ng-container>
+                <ng-container matColumnDef="quantity">
+                    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                </ng-container>
+                <!-- <ng-container matColumnDef="discount">
+                    <th mat-header-cell *matHeaderCellDef> Discount </th>
+                  
+                </ng-container>
+              
+                <ng-container matColumnDef="mbamount">
+                    <th mat-header-cell *matHeaderCellDef> Amount </th>
+                   
+                </ng-container> -->
+                <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns2; let i= index" (click)="onClick(row, i)" 
+                [ngClass]="{'highlight': selectedRowIndex == i+1}"></tr>
+            </table>
+
+        </div>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Product Name </th>
+                <td mat-cell *matCellDef="let element;let j= index">
+                    <input type="text"  [formControl]="productName[j]"
+                        (keyup)="medicineFilter($event)" class="nameInput" (click)="openDialog(j)"
+                        (input)="addItem($event,'name',dataSource.filteredData.indexOf(element))">
+                    <!-- [matAutocomplete]="auto" <mat-autocomplete #auto="matAutocomplete"
+                        (optionSelected)="addItem($event,'name',dataSource.filteredData.indexOf(element))">
+                        <mat-option *ngFor="let option of medicines" [value]="option.name"
+                            (click)="medicibeId(option.id,j)">
+                            {{option.name}}
+                        </mat-option>
+                    </mat-autocomplete> -->
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="batch">
+                <th mat-header-cell *matHeaderCellDef> Batch Number </th>
+                <td mat-cell *matCellDef="let element;let j = index">
+                    <input class="input" (click)="BatchopenDialog(j,element.id,data)" [formControl]="BatchNum[j]"
+                        (input)="addItem($event,'batchNumber',dataSource.filteredData.indexOf(element))">
+                </td>
+            </ng-container>
+
+           
+            <ng-container matColumnDef="packing">
+                <th mat-header-cell *matHeaderCellDef> Packing </th>
+                <td mat-cell *matCellDef="let element;let j = index;">
+                    <input class="packingInput" [formControl]="packing[j]"
+                        (input)="addItem($event,'packing',dataSource.filteredData.indexOf(element))" readonly>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="units">
+                <th mat-header-cell *matHeaderCellDef> Units </th>
+                <td mat-cell *matCellDef="let element;let j = index;">
+                    <input class="unitsInnput" [formControl]="units[j]"
+                        (input)="addItem($event,'units',dataSource.filteredData.indexOf(element))" readonly>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="mrp">
+                <th mat-header-cell *matHeaderCellDef> MRP </th>
+                <td mat-cell *matCellDef="let element;let j = index">
+                    <input class="input" (keyup)="calculations(j)" [formControl]="Mrp[j]"
+                        (input)="addItem($event,'mrp',dataSource.filteredData.indexOf(element))">
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="mfgDate">
+                <th mat-header-cell *matHeaderCellDef> MFG Date </th>
+                <!-- <td mat-cell *matCellDef="let element;let j = index">
+                    <input class="dateInput" matInput [matDatepicker]="picker"
+                    [formControl]="mDate[j]"
+                        (dateInput)="mfDate($event,'mfgDate',dataSource.filteredData.indexOf(element))">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </td> -->
+                <td mat-cell *matCellDef="let element">
+                    <input class="dateInput" [matDatepicker]="dp" [min]="mfgMinDate" [max]="mfgMaxDate"
+                        [formControl]="mDate[dataSource.filteredData.indexOf(element)]"
+                        (dateInput)="addItem($event,'mfgDate',dataSource.filteredData.indexOf(element))">
+                    <mat-datepicker-toggle [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker class="date" #dp startView="multi-year"
+                        (yearSelected)="mfgChosenYearHandler($event,dataSource.filteredData.indexOf(element))"
+                        (monthSelected)="mfgChosenMonthHandler($event, dp,dataSource.filteredData.indexOf(element))">
+                    </mat-datepicker>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="expiry">
+                <th mat-header-cell *matHeaderCellDef> Expiry Date </th>
+                <td mat-cell *matCellDef="let element">
+                    <input class="dateInput" [matDatepicker]="dp" [min]="minDate" [max]="maxDate"
+                        [formControl]="date[dataSource.filteredData.indexOf(element)]"
+                        (dateInput)="addItem($event,'expiryDate',dataSource.filteredData.indexOf(element))">
+                    <mat-datepicker-toggle [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker class="date" #dp startView="multi-year"
+                        (yearSelected)="chosenYearHandler($event,dataSource.filteredData.indexOf(element))"
+                        (monthSelected)="chosenMonthHandler($event, dp,dataSource.filteredData.indexOf(element))">
+                    </mat-datepicker>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="qty">
+                <th mat-header-cell *matHeaderCellDef> Qty </th>
+                <td mat-cell *matCellDef="let element;let j = index;">
+                    <input class="qtyInput" (keyup)="calculations(j)" (click)="BatchopenDialog(j,element.id,data)" [formControl]="Quantity[j]"
+                        (input)="addItem($event,'quantity',dataSource.filteredData.indexOf(element))">
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="freeQuantity">
+                <th mat-header-cell *matHeaderCellDef>Free Qty </th>
+                <td mat-cell *matCellDef="let element;let j = index;">
+                    <input class="qtyInput" (click)="calculations(j)"  [formControl]="FreeQuantity[j]"
+                        (input)="addItem($event,'freeQuantity',dataSource.filteredData.indexOf(element))">
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="purchasePrice">
+                <th mat-header-cell *matHeaderCellDef> Purchase Price </th>
+                <td mat-cell *matCellDef="let element;let j = index;">
+                    <input class="input" (keyup)="calculations(j)"  [formControl]="PurchaseAmount[j]"
+                        (input)="addItem($event,'purPrice',dataSource.filteredData.indexOf(element))">
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="discount">
+                <th mat-header-cell *matHeaderCellDef> Discount </th>
+                <td mat-cell *matCellDef="let element;let j = index;">
+                    <select class="select" (click)="calculations(j)"   [formControl]="DiscountType[j]"
+                        (input)="addItem($event,'disType',dataSource.filteredData.indexOf(element))">
+                        <!-- <option selected="selected" disabled="disabled">select</option> -->
+                        <option value="percentage">%</option>
+                        <option value="flat">Flat</option>
+                    </select>
+                    <input class="dateInput" placeholder="0.00"  [formControl]="DiscountAmount[j]" (keyup)="calculations(j)"
+                        (input)="addItem($event,'discount',dataSource.filteredData.indexOf(element))" />
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Amount </th>
+                <td mat-cell *matCellDef="let element;let j = index;">
+                    <input class="input" readonly [formControl]="Amount[j]"
+                        (input)="addItem($event,'actualCostPrice',dataSource.filteredData.indexOf(element))">
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="gst">
+                <th mat-header-cell *matHeaderCellDef style="width: 1px;"> GST(%) </th>
+                <td mat-cell *matCellDef="let element;let j = index;" style="width: 1px;">
+                    <input class="gstInput" [formControl]="gst[j]" readonly
+                        (input)="addItem($event,'gst',dataSource.filteredData.indexOf(element))">
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="hsn">
+                <th mat-header-cell *matHeaderCellDef> HSN Code </th>
+                <td mat-cell *matCellDef="let element;let j = index;">
+                    <input class="input" [formControl]="hsn[j]" readonly
+                        (input)="addItem($event,'hsn',dataSource.filteredData.indexOf(element))">
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="margin">
+                <th mat-header-cell *matHeaderCellDef> Margin </th>
+                <td mat-cell *matCellDef="let element;let j = index;">
+                    <input class="unitsInnput" [formControl]="MarginValue[j]"
+                        (input)="addItem($event,'margin',dataSource.filteredData.indexOf(element))" readonly>
+                </td>
+            </ng-container>
+            <!-- <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element; let j = index;" class="action-link">
+                    <div class="action" (click)="deleteRow(element.id,j)">
+                        <mat-icon class="view" color="warn" matTooltip="Delete" (click)="calculations(j)">
+                            delete</mat-icon>
+                    </div>
+                </td>
+            </ng-container> -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+        <mat-toolbar *ngIf="buttons">
+            <button mat-raised-button color="primary" type="button" (click)="addRow()">Add Product</button>
+        </mat-toolbar>
+
+        <br>
+        <div class="calculations">
+            <table class="totalTable">
+                <tr>
+                    <td style="width: 35%;"></td>
+                    <td>
+                        <label>5%&nbsp;Value </label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="gstValue5" readonly>
+                    </td>
+                    <td>
+                        <label>5%&nbsp;GST </label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="gstPrice5" placeholder="" readonly>
+                    </td>
+                    <td>
+                        <label>Amount</label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="purAmount" required readonly>
+                    </td>
+                    <td>
+                        <label>Special&nbsp;Dis.Type</label>
+                    </td>
+                    <td>
+                        <select class="selectDisType" formControlName="disType" (click)="purCalculations()">
+                            <!-- <option selected="selected" disabled="selected">select</option> -->
+                            <option value="percentage">%</option>
+                            <option value="flat">flat</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 35%;"></td>
+                    <td>
+                        <label>12%&nbsp;Value</label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="gstValue12" readonly>
+                    </td>
+                    <td>
+                        <label>12%&nbsp;GST </label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="gstPrice12" readonly>
+                    </td>
+                    <td>
+                        <label>Disc.&nbsp;Amt </label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="discountPrice" readonly>
+                    </td>
+                    <td>
+                        <label>Special&nbsp;Dis</label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="totalDiscount" *ngIf="tDis" (click)="purCalculations()">
+                        <input type="text" formControlName="discount" *ngIf="!tDis" (keyup)="purCalculations()">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 35%;"></td>
+                    <td>
+                        <label>18%&nbsp;Value</label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="gstValue18" readonly>
+                    </td>
+                    <td>
+                        <label>18%&nbsp;GST</label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="gstPrice18" readonly>
+                    </td>
+                    <td>
+                        <label>Sub&nbsp;Total</label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="amount" readonly>
+                    </td>
+                    <td>
+                        <label style="font-size: 15px;">Dis&nbsp;Amount </label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="purDisAmount" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 35%;"></td>
+                    <td>
+                        <label>28%&nbsp;Value</label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="gstValue28" readonly>
+                    </td>
+                    <td>
+                        <label>28%&nbsp;GST</label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="gstPrice28" readonly>
+                    </td>
+                    <td>
+                        <label>Total&nbsp;Amount</label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="total" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 35%;"></td>
+
+                    <td>
+                        <label>0%&nbsp;Value</label>
+                    </td>
+                    <td>
+                        <input type="text" [value]="gstValue0" readonly>
+                    </td>
+                    <td>
+                        <b><label style="font-size: 15px;">Total&nbsp;GST</label></b>
+                    </td>
+                    <td>
+                        <input type="text" [value]="totalGstPrice" readonly>
+                    </td>
+                    <td>
+                        <b><label style="font-size: 15px;">Net&nbsp;Amount </label></b>
+                    </td>
+                    <td>
+                        <input type="text" [value]="netAmount" required readonly>
+                    </td>
+                   
+                </tr>
+                <tr>
+                <tr>
+                    <td style="width: 35%;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                   
+                </tr>
+                <tr>
+                    <td style="width: 45%;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                   
+                </tr>
+                <tr>
+                    <td style="width: 45%;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                   
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-5"></div>
+            <div class="col-sm-2">
+                <button *ngIf="buttons" mat-raised-button type="button" color="primary" class="save" (click)="onSubmit()">Save</button>
+            </div>
+            <div class="col-sm-5"></div>
+        </div>
+    </form>
+</mat-card>

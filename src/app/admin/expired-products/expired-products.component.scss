@@ -1,0 +1,64 @@
+
+table {
+    width: 100%;
+  }
+  
+  td{
+    width: 10px;
+  }
+  
+  .card-margin{
+    margin: 2% 2% 2% 2%;
+  }
+  
+  mat-toolbar{
+    background-color: white;
+  }
+  p{
+    text-align: center;
+  }
+ 
+  .spacer{
+    flex: 1 1 auto;
+  }
+  .newButton{
+    margin-left: -2.1%;
+    height: 35px;
+  }
+  .view{  
+  cursor: pointer;
+  margin: 2px;
+  border: 1px solid rgb(231, 230, 230);
+  padding: 5px;
+  border-radius: 5px;
+  }
+  
+  .add{
+  margin-left: -5px;
+  font-size: 20px;
+  }
+ 
+  .exportButton{
+    height: 35px;
+  }
+  .matTable{
+  border: 1px solid #E5E7E9;
+  }
+  .img{
+    height: 80px;
+    width: 80px;
+  }
+  th{
+    font-weight: bold;
+  }
+  
+  .image{
+    text-align: center;
+    background-color: white;
+    div{
+      text-align: center;
+      font-size: 30px;
+      color: #CACFD2;
+      font-weight: 400;
+  }
+}

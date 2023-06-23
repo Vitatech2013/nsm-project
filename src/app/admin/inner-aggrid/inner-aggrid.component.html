@@ -1,0 +1,61 @@
+<div class="card-margin mat-elevation-z5">
+    <div class="mat-table matTable">
+        <mat-card class="mat-elevation-z0">
+            <form [formGroup]="salesForm">
+                <div class="row">
+                    <div class="col col-sm-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Name</mat-label>
+                            <input autofocus type="text" formControlName="name" placeholder="Name" (keyup)="userNameFilter($event)" matInput
+                                [matAutocomplete]="auto" required>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of users" [value]="option.user.fullName"
+                                    (click)="usersId(option.user.id,option.user.fullName)">
+                                    {{option.user.fullName}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col col-sm-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Date(dd-MM-YYYY)</mat-label>
+                            <input matInput [matDatepicker]="picker1" placeholder="dd-MM-YY" formControlName="date" >
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col col-sm-5">
+                        <button class="dateSearch" mat-raised-button color="primary" 
+                            (click)="itemReports()">Search</button>&nbsp;
+                    </div>
+                    <div class="col col-sm-3">
+                        <mat-form-field appearance="outline">
+                            <input matInput class="search" placeholder="Search" autocomplete="off" type="search"
+                                (keyup)="applyFilter($event.target.value)">
+                            <button matSuffix mat-icon-button>
+                                <mat-icon>search</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </mat-card>
+        </div>
+        <ag-grid-angular
+        pagination="true"
+        paginationPageSize="5"
+        style="width:100%; height:400px" 
+        class="ag-theme-alpine"
+        [defaultColDef]="defaultColDef"
+        [rowData]="dataSource.filteredData" 
+        [columnDefs]="columnDefs"
+        (gridReady)="onGridReady($event)"
+        [masterDetail]="true"
+        [detailCellRendererParams]="detailCellRendererParams"
+        (firstDataRendered)="onFirstDataRendered($event)"></ag-grid-angular>
+    </div>
+ 
+
+    <!-- <div class="sales"> -->
+        <!-- [detailCellRenderer]="detailCellRenderer" -->
+<!-- </div> -->

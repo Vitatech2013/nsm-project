@@ -1,0 +1,113 @@
+<div class="card-margin mat-elevation-z3">
+    <div class="mat-table matTable">
+        <mat-card class="mat-elevation-z0">
+            <mat-card-header>
+            <button mat-raised-button class="newButton" color="primary" [routerLink]="['/admin/employees/add']"
+                routerLinkActive="router-link-active">
+                <mat-icon class="add">add_circle</mat-icon> Add<span class="spacer"></span>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="newButton" mat-raised-button (click)="exportTable()" color="primary">
+                <mat-icon class="add">description</mat-icon>Excel</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="newButton" mat-raised-button (click)="downloadPDF()" color="primary">
+                <mat-icon class="add">picture_as_pdf</mat-icon>PDF</button><span class="spacer"></span>  <span class="spacer"></span>
+            <mat-form-field appearance="outline">
+                <!-- <mat-label>Search</mat-label> -->
+                <input matInput placeholder="Search" (keyup)="applyFilter($event)">
+                <button matSuffix mat-icon-button>
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+        </mat-card-header>
+        </mat-card>
+
+        <div class="mat-elevation-z3"> 
+           
+                <!-- <table id="MaterialTable" mat-table [dataSource]="dataSource" class="mat-elevation-z3">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> SNo. </th>
+                <td mat-cell *matCellDef="let element">{{dataSource.filteredData.indexOf(element)+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="uniqueId">
+                <th mat-header-cell *matHeaderCellDef> Unique Id </th>
+                <td mat-cell *matCellDef="let element"> {{element.user.uniqueId}} </td>
+            </ng-container>
+            <ng-container matColumnDef="image">
+                <th mat-header-cell *matHeaderCellDef> Image </th>
+                <td mat-cell *matCellDef="let element">
+                    <img [src]="url+ '/'+element.user.image"  width="60px" height="60px" style="border-radius: 3px;">
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef> Role </th>
+                <td mat-cell *matCellDef="let element"> {{element.user.role.role}} </td>
+            </ng-container>
+            <ng-container matColumnDef="fullName">
+                <th mat-header-cell *matHeaderCellDef> FullName </th>
+                <td mat-cell *matCellDef="let element"> {{element.user.fullName}} </td>
+            </ng-container> -->
+            <!-- <ng-container matColumnDef="userName">
+                <th mat-header-cell *matHeaderCellDef> UserName </th>
+                <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+            </ng-container> -->
+            <!-- <ng-container matColumnDef="Mobilenumber">
+                <th mat-header-cell *matHeaderCellDef> MobileNumber </th>
+                <td mat-cell *matCellDef="let element"> {{element.user.mobile}} </td>
+            </ng-container> -->
+            <!-- <ng-container matColumnDef="bloodGroup">
+                <th mat-header-cell *matHeaderCellDef> Blood Group </th>
+                <td mat-cell *matCellDef="let element"> {{element.bloodGroup}} </td>
+            </ng-container> -->
+            <!-- <ng-container matColumnDef="DOB">
+                <th mat-header-cell *matHeaderCellDef> DOB </th>
+                <td mat-cell *matCellDef="let element"> {{element.dob | date}} </td>
+            </ng-container>
+           
+            <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef> Address </th>
+                <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element" class="action-link">
+                    <mat-icon class="view" color="primary" matTooltip="View" (click)="UpdateEmployee(element.id)">
+                        mode</mat-icon>
+                    <mat-icon class="view" color="warn" matTooltip="Delete" (click)="DeleteEmployee(element.id)">
+                        delete</mat-icon>
+                        <mat-icon class="view" color="warn" (click)="ViewAttendanceData(element.user.id)">
+                            more_horiz</mat-icon>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div *ngIf="isLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="image" *ngIf="total <= 0">
+            <img src="{{noData.image}}" style="height:150px;width: 150px;">
+            <div>
+                {{noData.noDataFound}}
+            </div>
+        </div>
+        <mat-paginator #paginator [length]="total" [showFirstLastButtons]="true" [pageSize]="pageSize"
+            [pageSizeOptions]="totalLength">
+        </mat-paginator>
+        -->
+        <ag-grid-angular
+        pagination="true"
+        paginationPageSize="5"
+        style="width:100%; height:600px" 
+        class="ag-theme-alpine"
+        [defaultColDef]="defaultColDef"
+        [rowData]="dataSource.filteredData" 
+        [columnDefs]="columnDefs"
+        (gridReady)="onGridReady($event)"
+        [editType]="'fullRow'"
+        (rowEditingStopped)="(onRowEditingStopped)"
+        [frameworkComponents]="frameworkComponents"></ag-grid-angular>
+      <div>
+      </div>
+    </div>
+</div>
